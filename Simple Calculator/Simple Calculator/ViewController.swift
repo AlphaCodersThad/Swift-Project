@@ -26,6 +26,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func chkAnswerButton(sender: UIButton) {
+        
+        let x : Int = Int(arc4random_uniform(14) + 1)
+        let y : Int = Int(arc4random_uniform(14) + 1)
 
+        let z : Int = x * y
+        
+        multiplicandLabel.text = String(x)
+        multiplierLabel.text = String(y)
+        
+        answerLabel.text = String(z)
+        
+    }
+    
 }
 
