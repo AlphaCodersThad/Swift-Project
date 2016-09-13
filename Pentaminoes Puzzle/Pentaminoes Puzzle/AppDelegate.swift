@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Simple Calculator
+//  Pentaminoes Puzzle
 //
-//  Created by Thadea Achmad on 9/3/16.
+//  Created by Thadea Achmad on 9/13/16.
 //  Copyright © 2016 Thadea Achmad. All rights reserved.
 //
 
@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-}
 
+
+}
 
