@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25077ABD1D97025000C85C71 /* puzzlePieces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25077ABC1D97025000C85C71 /* puzzlePieces.swift */; };
 		2541B5E81D88A7F0008C060A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2541B5E71D88A7F0008C060A /* AppDelegate.swift */; };
 		2541B5EA1D88A7F0008C060A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2541B5E91D88A7F0008C060A /* ViewController.swift */; };
 		2541B5ED1D88A7F0008C060A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2541B5EB1D88A7F0008C060A /* Main.storyboard */; };
 		2541B5EF1D88A7F0008C060A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2541B5EE1D88A7F0008C060A /* Assets.xcassets */; };
 		2541B5F21D88A7F0008C060A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2541B5F01D88A7F0008C060A /* LaunchScreen.storyboard */; };
 		2541B5FD1D88A7F0008C060A /* Pentaminoes_PuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2541B5FC1D88A7F0008C060A /* Pentaminoes_PuzzleTests.swift */; };
-		2541B60C1D88B55C008C060A /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2541B60B1D88B55C008C060A /* BoardModel.swift */; };
-		2541B60E1D88B563008C060A /* PiecesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2541B60D1D88B563008C060A /* PiecesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		25077ABC1D97025000C85C71 /* puzzlePieces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = puzzlePieces.swift; sourceTree = "<group>"; };
 		2541B5E41D88A7F0008C060A /* Pentaminoes Puzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pentaminoes Puzzle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2541B5E71D88A7F0008C060A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2541B5E91D88A7F0008C060A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,8 +38,6 @@
 		2541B5F81D88A7F0008C060A /* Pentaminoes PuzzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pentaminoes PuzzleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2541B5FC1D88A7F0008C060A /* Pentaminoes_PuzzleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pentaminoes_PuzzleTests.swift; sourceTree = "<group>"; };
 		2541B5FE1D88A7F0008C060A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2541B60B1D88B55C008C060A /* BoardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
-		2541B60D1D88B563008C060A /* PiecesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiecesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +81,8 @@
 			children = (
 				2541B5E71D88A7F0008C060A /* AppDelegate.swift */,
 				2541B5E91D88A7F0008C060A /* ViewController.swift */,
-				2541B60D1D88B563008C060A /* PiecesModel.swift */,
-				2541B60B1D88B55C008C060A /* BoardModel.swift */,
 				2541B5EB1D88A7F0008C060A /* Main.storyboard */,
+				25077ABC1D97025000C85C71 /* puzzlePieces.swift */,
 				2541B5EE1D88A7F0008C060A /* Assets.xcassets */,
 				2541B5F01D88A7F0008C060A /* LaunchScreen.storyboard */,
 				2541B5F31D88A7F0008C060A /* Info.plist */,
@@ -203,9 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2541B60C1D88B55C008C060A /* BoardModel.swift in Sources */,
+				25077ABD1D97025000C85C71 /* puzzlePieces.swift in Sources */,
 				2541B5EA1D88A7F0008C060A /* ViewController.swift in Sources */,
-				2541B60E1D88B563008C060A /* PiecesModel.swift in Sources */,
 				2541B5E81D88A7F0008C060A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
