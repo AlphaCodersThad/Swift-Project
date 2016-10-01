@@ -17,45 +17,99 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdv-w0-SLZ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Board0" highlightedImage="Board0" translatesAutoresizingMaskIntoConstraints="NO" id="zdv-w0-SLZ">
                                 <rect key="frame" x="174" y="60" width="420" height="420"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="420" id="CXl-BN-ZaO"/>
+                                    <constraint firstAttribute="width" constant="420" id="sLq-es-gOD"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0LT-rz-uJR">
-                                <rect key="frame" x="660" y="108" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1du-uP-taW">
-                                <rect key="frame" x="660" y="250" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HO8-9w-Mhf">
-                                <rect key="frame" x="660" y="401" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTI-s4-H8u">
-                                <rect key="frame" x="55" y="161" width="46" height="30"/>
+                                <rect key="frame" x="55" y="126" width="46" height="30"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHX-Ga-QDv">
-                                <rect key="frame" x="38" y="250" width="114" height="103"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHX-Ga-QDv">
+                                <rect key="frame" x="36" y="215" width="114" height="103"/>
                                 <state key="normal" title="boardButton1" backgroundImage="Board1button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectLargeBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GAl-Y2-Nei"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-US-dag">
-                                <rect key="frame" x="34" y="383" width="118" height="103"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-US-dag">
+                                <rect key="frame" x="34" y="348" width="118" height="103"/>
                                 <state key="normal" title="boardButton2" backgroundImage="Board2button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectLargeBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hvi-Hd-bY2"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzg-VB-eNS">
-                                <rect key="frame" x="34" y="124" width="118" height="103"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pzg-VB-eNS">
+                                <rect key="frame" x="34" y="89" width="118" height="103"/>
                                 <state key="normal" title="boardButton0" backgroundImage="Board0button">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectLargeBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e15-Xe-8Qo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N92-hb-iLm">
+                                <rect key="frame" x="622" y="80" width="118" height="103"/>
+                                <state key="normal" title="boardButton3" backgroundImage="Board3button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectLargeBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ffq-Jb-bOd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jU-Gt-zKP">
+                                <rect key="frame" x="622" y="209" width="118" height="103"/>
+                                <state key="normal" title="boardButton4" backgroundImage="Board4button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectLargeBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nte-9z-xby"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOF-e1-HUy">
+                                <rect key="frame" x="622" y="357" width="118" height="103"/>
+                                <state key="normal" title="boardButton5" backgroundImage="Board5button">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectLargeBoard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h1B-US-IJ9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0U-PJ-Mf9">
+                                <rect key="frame" x="394" y="824" width="42" height="30"/>
+                                <state key="normal" title="Solve!"/>
+                                <connections>
+                                    <action selector="solvePuzzle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GvY-B9-eI5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pzg-VB-eNS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="69" id="08d-Ky-rgX"/>
+                            <constraint firstItem="zdv-w0-SLZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="10q-in-FfH"/>
+                            <constraint firstItem="ZYs-US-dag" firstAttribute="top" secondItem="lHX-Ga-QDv" secondAttribute="bottom" constant="30" id="DmO-VN-n4E"/>
+                            <constraint firstItem="zdv-w0-SLZ" firstAttribute="leading" secondItem="Pzg-VB-eNS" secondAttribute="trailing" constant="22" id="MiS-P3-o13"/>
+                            <constraint firstItem="OOF-e1-HUy" firstAttribute="top" secondItem="1jU-Gt-zKP" secondAttribute="bottom" constant="45" id="Sfx-jr-Ua3"/>
+                            <constraint firstItem="ZYs-US-dag" firstAttribute="centerX" secondItem="lHX-Ga-QDv" secondAttribute="centerX" id="bVi-nz-uzk"/>
+                            <constraint firstItem="zdv-w0-SLZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e67-Gf-T9J"/>
+                            <constraint firstItem="lHX-Ga-QDv" firstAttribute="top" secondItem="Pzg-VB-eNS" secondAttribute="bottom" constant="23" id="heG-q3-Lq8"/>
+                            <constraint firstItem="1jU-Gt-zKP" firstAttribute="centerX" secondItem="N92-hb-iLm" secondAttribute="centerX" id="iHM-TQ-x6r"/>
+                            <constraint firstItem="1jU-Gt-zKP" firstAttribute="top" secondItem="N92-hb-iLm" secondAttribute="bottom" constant="26" id="kbk-mz-H45"/>
+                            <constraint firstItem="lHX-Ga-QDv" firstAttribute="centerX" secondItem="Pzg-VB-eNS" secondAttribute="centerX" id="oy4-PO-DBj"/>
+                            <constraint firstItem="N92-hb-iLm" firstAttribute="leading" secondItem="zdv-w0-SLZ" secondAttribute="trailing" constant="28" id="qtZ-G2-6Hc"/>
+                            <constraint firstItem="OOF-e1-HUy" firstAttribute="centerX" secondItem="1jU-Gt-zKP" secondAttribute="centerX" id="vsX-TD-eZv"/>
+                            <constraint firstItem="N92-hb-iLm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="wxT-Ja-Qt8"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
@@ -68,8 +122,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Board0" width="840" height="840"/>
         <image name="Board0button" width="105" height="105"/>
         <image name="Board1button" width="105" height="105"/>
         <image name="Board2button" width="105" height="105"/>
+        <image name="Board3button" width="105" height="105"/>
+        <image name="Board4button" width="105" height="105"/>
+        <image name="Board5button" width="105" height="105"/>
     </resources>
 </document>
