@@ -9,8 +9,31 @@
 import Foundation
 
 
-class NationalParksModel  {
+class NationalParksModel{
     
+    
+    private var photosFactory = [[ImageDetails]]()
+    private var titles = [String]()
+    
+    private func importData(pathToAssetsFile : String?){
+        for element in NSArray(contentsOfFile: pathToAssetsFile!)! as [AnyObject] {
+            let photos = element as![String:AnyObject]
+            for (key , value) in photos{
+                if key == "name" {
+                    let parkName = value as! String
+                    titles.append(parkName)
+                }
+                if key == "photos" {
+                    var captions = [ImageDetails]()
+                    let imageAndCaption = value as! [[String:String]]
+                    for elements in imageAndCaption {
+                        captions.append(ImageDetails(imageFileName: elements["imageName"]!, caption: elements["caption"]!))
+                    }
+                    photosFactory.append(captions)
+                }
+            }
+        }
+    }
 
     
     func numberOfRows(x : Int) -> Int {
@@ -24,7 +47,7 @@ class NationalParksModel  {
     }
     
     func imagePath(x: Int, y:Int) ->String{
-        return photosFactory[x][y].imageFileName + ".jpg"
+        return photosFactory[x][y].imageFileName + ".png"
     }
     
     func imageCaption(x: Int, y: Int) -> String{
