@@ -90,6 +90,46 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         sceneryTitle.text = photosData!.imageCaption(x, y: y)
         configureScrollView()
     }
+    
+    // MARK: TODO!
+    
+    @IBAction func zoomInOut(sender: UIPinchGestureRecognizer) {
+        if sender.state == .Ended || sender.state == .Changed {
+            
+           /* var vWidth = self.view.frame.width
+            var vHeight = self.view.frame.height
+            
+            var scrollImg: UIScrollView = UIScrollView()
+            scrollImg.delegate = self
+            scrollImg.frame = CGRectMake(0, 0, vWidth, vHeight)
+            scrollImg.backgroundColor = UIColor(red: 90, green: 90, blue: 90, alpha: 0.90)
+            scrollImg.alwaysBounceVertical = false
+            scrollImg.alwaysBounceHorizontal = false
+            scrollImg.showsVerticalScrollIndicator = true
+            scrollImg.flashScrollIndicators()
+            
+            scrollImg.minimumZoomScale = 1.0
+            scrollImg.maximumZoomScale = 10.0
+            
+            mainScrollView.addSubview(scrollImg)
+            
+            imageView!.layer.cornerRadius = 11.0
+            imageView!.clipsToBounds = false
+            scrollImg.addSubview(imageView!)*/
+            
+        }
+
+    }
+    
+    
+    //  Scale view when zooming is about to occur in scroll view
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        <#code#>
+    }
 
 
 }
