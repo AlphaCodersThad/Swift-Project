@@ -29,9 +29,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let pathToAssetsFile = NSBundle.mainBundle().pathForResource("Photos", ofType: "plist")
         photosData = NationalParksModel(pathToAssetsFile: pathToAssetsFile!)
+        
+        
         mainScrollView.delegate = self
         mainScrollView.minimumZoomScale = 1.0
         mainScrollView.maximumZoomScale = 10.0
@@ -39,14 +40,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews()
     {
-        //
         super.view.bringSubviewToFront(parkTitle)
         super.view.bringSubviewToFront(sceneryTitle)
         
         // Reading from property list to change labels of specific park->scenery
         parkTitle.text = photosData!.parkName(x)
         configureScrollView()
-        sceneryTitle.text = photosData!.imageCaption(x, y: y)
+        sceneryTitle.text = photosData!.sceneryCaption(x, y: y)
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,7 +87,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView){
         x = Int(scrollView.contentOffset.x / scrollView.frame.width)
         y = Int(scrollView.contentOffset.y / scrollView.frame.height)
-        sceneryTitle.text = photosData!.imageCaption(x, y: y)
+        sceneryTitle.text = photosData!.sceneryCaption(x, y: y)
         configureScrollView()
     }
     
@@ -95,8 +95,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func zoomInOut(sender: UIPinchGestureRecognizer) {
         if sender.state == .Ended || sender.state == .Changed {
+           
             
-           /* var vWidth = self.view.frame.width
+            
+            /* var vWidth = self.view.frame.width
             var vHeight = self.view.frame.height
             
             var scrollImg: UIScrollView = UIScrollView()
@@ -128,7 +130,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(scrollView: UIScrollView) {
-        <#code#>
+        // I have to update imageView here somehow
     }
 
 
