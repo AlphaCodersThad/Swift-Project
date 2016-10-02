@@ -11,17 +11,19 @@ import Foundation
 
 class NationalParksModel{
     
-    
-    private var photosFactory = [[ImageDetails]]()
-    private var titles = [String]()
+    // PRIVATE:
+    private var photosDetail = [[ImageDetails]]()
+    private var parkTitles = [String]()
     
     private func importData(pathToAssetsFile : String?){
-        for element in NSArray(contentsOfFile: pathToAssetsFile!)! as [AnyObject] {
+        for element in NSArray(contentsOfFile: pathToAssetsFile!)! as [AnyObject]{
             let photos = element as![String:AnyObject]
+            
+            // read and append plist values
             for (key , value) in photos{
                 if key == "name" {
                     let parkName = value as! String
-                    titles.append(parkName)
+                    parkTitles.append(parkName)
                 }
                 if key == "photos" {
                     var captions = [ImageDetails]()
@@ -29,29 +31,31 @@ class NationalParksModel{
                     for elements in imageAndCaption {
                         captions.append(ImageDetails(imageFileName: elements["imageName"]!, caption: elements["caption"]!))
                     }
-                    photosFactory.append(captions)
+                    photosDetail.append(captions)
                 }
             }
         }
     }
 
-    
-    func numberOfRows(x : Int) -> Int {
-        return photosFactory[x].count
+    // PUBLIC:
+    var numberOfColumns : Int {
+        get { return parkTitles.count }
     }
     
-    var numberOfColumns : Int { get { return titles.count } }
+    func numberOfRows(x : Int) -> Int {
+        return photosDetail[x].count
+    }
     
     func parkName(index : Int) -> String{
-        return titles[index]
+        return parkTitles[index]
     }
     
     func imagePath(x: Int, y:Int) ->String{
-        return photosFactory[x][y].imageFileName + ".png"
+        return photosDetail[x][y].imageFileName + ".png"
     }
     
-    func imageCaption(x: Int, y: Int) -> String{
-        return photosFactory[x][y].caption
+    func sceneryCaption(x: Int, y: Int) -> String{
+        return photosDetail[x][y].caption
     }
     
     init(pathToAssetsFile: String){
