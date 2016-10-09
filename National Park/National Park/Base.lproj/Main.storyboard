@@ -45,7 +45,7 @@
         <scene sceneID="wU2-qN-39v">
             <objects>
                 <tabBarController id="FW1-92-anc" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="iNM-Lh-gku" customClass="TabBar" customModule="National_Park" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="iNM-Lh-gku" customClass="TabBar" customModule="National_Park">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -62,39 +62,42 @@
         <!--Table View Controller-->
         <scene sceneID="pve-8I-Eqi">
             <objects>
-                <tableViewController id="ROX-PM-G1M" userLabel="Table View Controller" customClass="TableViewController" customModule="National Park" sceneMemberID="viewController">
+                <tableViewController id="ROX-PM-G1M" userLabel="Table View Controller" customClass="TableViewController" customModule="National_Park" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="164" sectionHeaderHeight="28" sectionFooterHeight="28" id="sXE-Hf-OPu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Table Cell" rowHeight="164" id="eTw-P5-7LB" customClass="TableCell" customModule="National Park">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Table Cell" rowHeight="164" id="eTw-P5-7LB" customClass="TableCell" customModule="National_Park">
                                 <rect key="frame" x="0.0" y="28" width="600" height="164"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTw-P5-7LB" id="DIB-Hp-zgk">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="163"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfm-bp-3cP">
-                                            <rect key="frame" x="8" y="11" width="240" height="138"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="240" id="sHA-YF-lLL"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Scenery Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anh-nt-1x2">
-                                            <rect key="frame" x="431" y="46" width="148" height="67"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="19"/>
+                                            <rect key="frame" x="30" y="48" width="148" height="67"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfm-bp-3cP">
+                                            <rect key="frame" x="402" y="13" width="172" height="138"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="160" id="ada-d1-1Up"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="anh-nt-1x2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mfm-bp-3cP" secondAttribute="trailing" constant="15" id="AdN-Tu-CkF"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="anh-nt-1x2" secondAttribute="trailing" constant="16" id="S75-pI-cKb"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="Mfm-bp-3cP" secondAttribute="leading" id="SdX-1q-ydv"/>
-                                        <constraint firstItem="Mfm-bp-3cP" firstAttribute="centerY" secondItem="DIB-Hp-zgk" secondAttribute="centerY" id="jmO-d7-a4s"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Mfm-bp-3cP" secondAttribute="bottom" constant="9" id="pDp-P8-Ewk"/>
-                                        <constraint firstItem="anh-nt-1x2" firstAttribute="centerY" secondItem="Mfm-bp-3cP" secondAttribute="centerY" id="uG3-Ho-coa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Mfm-bp-3cP" secondAttribute="bottom" constant="4" id="1pQ-v4-z1J"/>
+                                        <constraint firstItem="anh-nt-1x2" firstAttribute="centerY" secondItem="Mfm-bp-3cP" secondAttribute="centerY" id="4Ih-v5-QFj"/>
+                                        <constraint firstItem="anh-nt-1x2" firstAttribute="leading" secondItem="DIB-Hp-zgk" secondAttribute="leadingMargin" constant="22" id="5kj-NI-KoP"/>
+                                        <constraint firstItem="Mfm-bp-3cP" firstAttribute="centerY" secondItem="DIB-Hp-zgk" secondAttribute="centerY" id="C5x-9C-2fV"/>
+                                        <constraint firstItem="anh-nt-1x2" firstAttribute="top" secondItem="DIB-Hp-zgk" secondAttribute="topMargin" constant="40" id="HEP-XZ-Ph2"/>
+                                        <constraint firstItem="Mfm-bp-3cP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="anh-nt-1x2" secondAttribute="trailing" constant="15" id="Nj7-Rh-a4Q"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Mfm-bp-3cP" secondAttribute="trailing" constant="18" id="enZ-In-mk7"/>
+                                        <constraint firstItem="Mfm-bp-3cP" firstAttribute="top" secondItem="DIB-Hp-zgk" secondAttribute="topMargin" constant="5" id="my7-kx-O44"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="anh-nt-1x2" secondAttribute="bottom" constant="40" id="uTT-mv-4cM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -116,7 +119,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Collection" width="50" height="50"/>
-        <image name="Table" width="50" height="50"/>
+        <image name="Collection" width="30" height="30"/>
+        <image name="Table" width="30" height="30"/>
     </resources>
 </document>
