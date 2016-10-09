@@ -6,4 +6,7 @@
 //  Copyright © 2016 Thadea Achmad. All rights reserved.
 //
 
-import Foundation
+import UIKit
+class parkCollectionCell: UICollectionViewCell {
+    
+}

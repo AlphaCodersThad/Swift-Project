@@ -7,21 +7,23 @@
 //
 
 import Foundation
+import UIKit
 
 
 class NationalParksModel{
     
     static let sharedInstance = NationalParksModel()
     
-    
+    private let propertyFile = "Photos"
+    private let fileType = "plist"
     // PRIVATE:
     private var photosDetail = [[ImageDetails]]()
     private var parkTitles = [String]()
     
-    private init(){
-        let path = NSBundle.mainBundle().pathForResource("Photos", ofType: "plist")
-        importData(path)
-    }
+    // PUBLIC VAR:
+    var currentImage: UIImageView?
+    
+    
     
     // Parsing data from property file
     private func importData(pathToAssetsFile : String?){
@@ -65,6 +67,16 @@ class NationalParksModel{
     
     func sceneryCaption(x: Int, y: Int) -> String{
         return photosDetail[x][y].caption
+    }
+    
+    func getParkTitle(x: Int) -> String {
+        let parkTitle = photosDetail[x][0].imageFileName
+        return parkTitle.substringWithRange(Range<String.Index> (parkTitle.startIndex.advancedBy(0) ..< parkTitle.endIndex.advancedBy(-2) ))
+    }
+    
+    private init(){
+        let path = NSBundle.mainBundle().pathForResource(propertyFile, ofType: fileType)
+        importData(path)
     }
 }
 

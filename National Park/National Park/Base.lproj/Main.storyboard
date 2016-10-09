@@ -20,7 +20,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Qc4-nx-gux">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Collection Cell" id="Qc4-nx-gux">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -35,7 +35,7 @@
                             <outlet property="delegate" destination="yvD-cl-kGm" id="9cU-pc-5Ji"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Collection View" id="oPM-Kl-NO3"/>
+                    <tabBarItem key="tabBarItem" title="Collection View" image="Collection" id="oPM-Kl-NO3"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bau-SF-Z8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,34 +62,38 @@
         <!--Table View Controller-->
         <scene sceneID="pve-8I-Eqi">
             <objects>
-                <tableViewController id="ROX-PM-G1M" userLabel="Table View Controller" customClass="parkTableViewController" customModule="National_Park" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ROX-PM-G1M" userLabel="Table View Controller" customClass="TableViewController" customModule="National Park" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="164" sectionHeaderHeight="28" sectionFooterHeight="28" id="sXE-Hf-OPu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="164" id="eTw-P5-7LB" customClass="TableCell" customModule="National_Park" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Table Cell" rowHeight="164" id="eTw-P5-7LB" customClass="TableCell" customModule="National Park">
                                 <rect key="frame" x="0.0" y="28" width="600" height="164"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTw-P5-7LB" id="DIB-Hp-zgk">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="163"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfm-bp-3cP">
-                                            <rect key="frame" x="8" y="18" width="240" height="128"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfm-bp-3cP">
+                                            <rect key="frame" x="8" y="11" width="240" height="138"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="240" id="sHA-YF-lLL"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Scenery Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anh-nt-1x2">
-                                            <rect key="frame" x="449" y="71" width="127" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Scenery Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anh-nt-1x2">
+                                            <rect key="frame" x="431" y="46" width="148" height="67"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="19"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Mfm-bp-3cP" firstAttribute="top" secondItem="DIB-Hp-zgk" secondAttribute="topMargin" constant="-2" id="4Zz-Hz-GYO"/>
-                                        <constraint firstItem="anh-nt-1x2" firstAttribute="leading" secondItem="Mfm-bp-3cP" secondAttribute="trailing" constant="201" id="AdN-Tu-CkF"/>
+                                        <constraint firstItem="anh-nt-1x2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mfm-bp-3cP" secondAttribute="trailing" constant="15" id="AdN-Tu-CkF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="anh-nt-1x2" secondAttribute="trailing" constant="16" id="S75-pI-cKb"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="Mfm-bp-3cP" secondAttribute="leading" id="SdX-1q-ydv"/>
+                                        <constraint firstItem="Mfm-bp-3cP" firstAttribute="centerY" secondItem="DIB-Hp-zgk" secondAttribute="centerY" id="jmO-d7-a4s"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Mfm-bp-3cP" secondAttribute="bottom" constant="9" id="pDp-P8-Ewk"/>
                                         <constraint firstItem="anh-nt-1x2" firstAttribute="centerY" secondItem="Mfm-bp-3cP" secondAttribute="centerY" id="uG3-Ho-coa"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -104,11 +108,15 @@
                             <outlet property="delegate" destination="ROX-PM-G1M" id="gn6-xs-nTo"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Table View" id="zLk-ti-gw9"/>
+                    <tabBarItem key="tabBarItem" title="Table View" image="Table" id="zLk-ti-gw9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YV-aG-vjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="506"/>
+            <point key="canvasLocation" x="625" y="509"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Collection" width="50" height="50"/>
+        <image name="Table" width="50" height="50"/>
+    </resources>
 </document>
