@@ -1,5 +1,5 @@
 //
-//  nationalParksModel.swift
+//  NationalParksModel.swift
 //  National Park
 //
 //  Created by Thadea Achmad on 10/1/16.
@@ -11,10 +11,19 @@ import Foundation
 
 class NationalParksModel{
     
+    static let sharedInstance = NationalParksModel()
+    
+    
     // PRIVATE:
     private var photosDetail = [[ImageDetails]]()
     private var parkTitles = [String]()
     
+    private init(){
+        let path = NSBundle.mainBundle().pathForResource("Photos", ofType: "plist")
+        importData(path)
+    }
+    
+    // Parsing data from property file
     private func importData(pathToAssetsFile : String?){
         for element in NSArray(contentsOfFile: pathToAssetsFile!)! as [AnyObject]{
             let photos = element as![String:AnyObject]
@@ -56,10 +65,6 @@ class NationalParksModel{
     
     func sceneryCaption(x: Int, y: Int) -> String{
         return photosDetail[x][y].caption
-    }
-    
-    init(pathToAssetsFile: String){
-        importData(pathToAssetsFile)
     }
 }
 
