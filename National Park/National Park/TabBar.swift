@@ -9,12 +9,9 @@
 import UIKit
 
 class TabBar: UITabBar {
-    
-    let height : CGFloat = 60.0
-    
     override func sizeThatFits(size: CGSize) -> CGSize {
         var currentTabBarSize = super.sizeThatFits(size)
-        currentTabBarSize.height = height
+        currentTabBarSize.height = 70.0
         return currentTabBarSize
     }
 }

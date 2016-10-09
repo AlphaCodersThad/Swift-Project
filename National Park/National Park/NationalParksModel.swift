@@ -50,7 +50,7 @@ class NationalParksModel{
     }
 
     // PUBLIC:
-    var numberOfColumns : Int {
+    var totalColumns : Int {
         get { return parkTitles.count }
     }
     

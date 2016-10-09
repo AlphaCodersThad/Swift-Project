@@ -67,8 +67,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.03098605821" green="0.061756923620000001" blue="0.2265625" alpha="0.80529698579999998" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Table Cell" rowHeight="164" id="eTw-P5-7LB" customClass="TableCell" customModule="National_Park">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Table Cell" rowHeight="164" id="eTw-P5-7LB" customClass="TableCell" customModule="National_Park">
                                 <rect key="frame" x="0.0" y="28" width="600" height="164"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTw-P5-7LB" id="DIB-Hp-zgk">
@@ -88,6 +90,7 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.81345207443406453" green="0.80914809520425468" blue="0.81775605366387438" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="Mfm-bp-3cP" secondAttribute="bottom" constant="4" id="1pQ-v4-z1J"/>
                                         <constraint firstItem="anh-nt-1x2" firstAttribute="centerY" secondItem="Mfm-bp-3cP" secondAttribute="centerY" id="4Ih-v5-QFj"/>

@@ -12,7 +12,7 @@ import UIKit
 class TableViewController: UITableViewController{
     
     let nationalParkData = NationalParksModel.sharedInstance
-    var sectionCollapsed = [Bool](count: NationalParksModel.sharedInstance.numberOfColumns, repeatedValue: false)
+    var sectionCollapsed = [Bool](count: NationalParksModel.sharedInstance.totalColumns, repeatedValue: false)
     var scrollView : UIScrollView?
     let headerHeight : CGFloat = 60.0
     let zoomThreshold : CGFloat = 1.1
@@ -32,7 +32,7 @@ class TableViewController: UITableViewController{
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return nationalParkData.numberOfColumns
+        return nationalParkData.totalColumns
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,9 +46,21 @@ class TableViewController: UITableViewController{
         cell.sceneryImage!.image = image
         return cell
     }
+    
     // Setting the title here
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return nationalParkData.getParkTitle(section)
+        let GrandTeton = "GrandTeton"
+        let BryceCanyon = "BryceCanyon"
+        
+        if nationalParkData.getParkTitle(section) == GrandTeton {
+            return "Grand Teton"
+        }
+        else if nationalParkData.getParkTitle(section) == BryceCanyon{
+            return "Bryce Canyon"
+        }
+        else{
+            return nationalParkData.getParkTitle(section)
+        }
     }
     
     // Setting the height for the header section in UITableView
