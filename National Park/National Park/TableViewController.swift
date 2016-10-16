@@ -13,23 +13,26 @@ class TableViewController: UITableViewController{
     
     let nationalParkData = NationalParksModel.sharedInstance
     var sectionCollapsed = [Bool](count: NationalParksModel.sharedInstance.totalColumns, repeatedValue: false)
-    var scrollView : UIScrollView?
+    //var scrollView : UIScrollView?
     let headerHeight : CGFloat = 60.0
     let zoomThreshold : CGFloat = 1.1
-    var isSelected = false
+    //var isSelected = false
     var oldWidth : CGFloat?
     var currentImageSelectedIndex : NSIndexPath?
+    let heightOfLabel : CGFloat = 45
+    let textSize : CGFloat = 30
     
     override func viewDidLoad() {
-        oldWidth = self.view.bounds.width
+        currentImageSelectedIndex = NSIndexPath(forRow: 0, inSection: 0)
+
     }
     
-    override func viewDidLayoutSubviews() {
+    /*override func viewDidLayoutSubviews() {
         if oldWidth != self.view.bounds.width && isSelected{
             scrollView?.removeFromSuperview()
             configureScrollView(currentImageSelectedIndex!)
         }
-    }
+    }*/
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return nationalParkData.totalColumns
@@ -69,15 +72,15 @@ class TableViewController: UITableViewController{
     }
     
     //
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.scrollEnabled = false
         oldWidth = self.view.bounds.width
         currentImageSelectedIndex = indexPath
         isSelected = true
         configureScrollView(indexPath)
-    }
+    }*/
     
-    func configureScrollView(indexPath: NSIndexPath){
+    /*func configureScrollView(indexPath: NSIndexPath){
         let viewSize = self.view.bounds.size
         
         let tableViewOffsetIndex = self.tableView.rectForRowAtIndexPath(indexPath)
@@ -115,11 +118,11 @@ class TableViewController: UITableViewController{
             super.tableView.scrollEnabled = true
             isSelected = false
         }
-    }
+    }*/
     
-    override func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    /*override func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return nationalParkData.currentImage
-    }
+    }*/
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -144,4 +147,29 @@ class TableViewController: UITableViewController{
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Right)   // Row animation changed from .Fade
         }
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "getImageDetail" {
+            let control = segue.destinationViewController as! DetailViewController
+            let indexPath = tableView.indexPathForSelectedRow
+            let imageName = self.nationalParkData.imagePath(indexPath!.section, y: indexPath!.row)
+            let imageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: control.view.frame.width, height: control.view.frame.height))
+            imageView.image = UIImage(named: imageName)
+            imageView.contentMode = .ScaleAspectFit
+            imageView.autoresizingMask = [.FlexibleWidth , .FlexibleHeight , .FlexibleLeftMargin , .FlexibleRightMargin , .FlexibleTopMargin , .FlexibleBottomMargin]
+            let caption = UILabel(frame: CGRect(x: 0.0, y: control.view.frame.height/2, width: control.view.frame.width, height: heightOfLabel))
+            caption.text = nationalParkData.sceneryCaption(indexPath!.section, y: indexPath!.row)
+            caption.textColor = UIColor.magentaColor()
+            caption.font = UIFont(name: "HelveticaNeue-Bold", size: textSize)
+            // caption.backgroundColor = UIColor.lightGrayColor()
+            caption.textAlignment = .Center
+            
+            control.view.addSubview(imageView)
+            control.view.addSubview(caption)
+        }
+    }
+
 }

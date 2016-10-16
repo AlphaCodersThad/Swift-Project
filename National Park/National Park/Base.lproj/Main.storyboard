@@ -27,7 +27,7 @@
         <!--Content View Controller-->
         <scene sceneID="Aqi-7P-wKa">
             <objects>
-                <viewController id="phu-kB-KUu" userLabel="Content View Controller" customClass="ContentViewController" customModule="National_Park" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentViewController" id="phu-kB-KUu" userLabel="Content View Controller" customClass="ContentViewController" customModule="National_Park" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aTN-RE-Tey"/>
                         <viewControllerLayoutGuide type="bottom" id="G0d-vS-4Xb"/>
@@ -36,32 +36,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXL-CE-gSF">
-                                <rect key="frame" x="279" y="64" width="42" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BCJ-Nb-dGj">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8it-Al-fAD">
+                                <rect key="frame" x="277" y="478" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="3WQ-kE-UT4" kind="show" action="showDetailViewController:sender:" id="U9b-dK-Ypy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXL-CE-gSF">
+                                <rect key="frame" x="253" y="64" width="94" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BCJ-Nb-dGj">
-                                <rect key="frame" x="180" y="145" width="240" height="128"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8it-Al-fAD">
-                                <rect key="frame" x="277" y="385" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BCJ-Nb-dGj" firstAttribute="leading" secondItem="CRJ-K5-8tM" secondAttribute="leadingMargin" constant="160" id="2Un-oe-6qG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8it-Al-fAD" secondAttribute="trailing" constant="257" id="Xm2-TE-uvD"/>
+                            <constraint firstItem="BCJ-Nb-dGj" firstAttribute="centerY" secondItem="CRJ-K5-8tM" secondAttribute="centerY" id="YqI-0F-AoS"/>
+                            <constraint firstItem="bXL-CE-gSF" firstAttribute="top" secondItem="aTN-RE-Tey" secondAttribute="bottom" constant="44" id="Z2u-z8-0PF"/>
+                            <constraint firstItem="bXL-CE-gSF" firstAttribute="centerX" secondItem="BCJ-Nb-dGj" secondAttribute="centerX" id="cTS-pu-BhK"/>
+                            <constraint firstItem="bXL-CE-gSF" firstAttribute="trailing" secondItem="CRJ-K5-8tM" secondAttribute="trailingMargin" constant="-233" id="e8r-1d-qN0"/>
+                            <constraint firstItem="G0d-vS-4Xb" firstAttribute="top" secondItem="8it-Al-fAD" secondAttribute="bottom" constant="92" id="fwh-6n-yWN"/>
+                            <constraint firstItem="8it-Al-fAD" firstAttribute="top" secondItem="BCJ-Nb-dGj" secondAttribute="bottom" constant="114" id="iHf-mM-ayx"/>
+                            <constraint firstItem="8it-Al-fAD" firstAttribute="centerX" secondItem="BCJ-Nb-dGj" secondAttribute="centerX" id="lVj-x1-MVk"/>
+                            <constraint firstItem="8it-Al-fAD" firstAttribute="leading" secondItem="CRJ-K5-8tM" secondAttribute="leadingMargin" constant="257" id="rEQ-fl-tQU"/>
+                            <constraint firstItem="bXL-CE-gSF" firstAttribute="leading" secondItem="CRJ-K5-8tM" secondAttribute="leadingMargin" constant="233" id="tkN-Yl-bxO"/>
+                            <constraint firstItem="BCJ-Nb-dGj" firstAttribute="centerX" secondItem="CRJ-K5-8tM" secondAttribute="centerX" id="u9B-re-8ll"/>
+                            <constraint firstItem="BCJ-Nb-dGj" firstAttribute="top" secondItem="aTN-RE-Tey" secondAttribute="bottom" constant="216" id="x5c-XZ-nh4"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="8it-Al-fAD" id="o4s-nV-XVW"/>
                         <outlet property="previewImage" destination="BCJ-Nb-dGj" id="XY8-nj-PDj"/>
                         <outlet property="titleLabel" destination="bXL-CE-gSF" id="Dhx-qA-W2e"/>
-                        <segue destination="3WQ-kE-UT4" kind="show" id="lke-do-fQ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C7-jA-cmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1647" y="572"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="JcX-U5-L9a">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="jUN-u1-SwK" customClass="PageViewController" customModule="National_Park" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vxn-ry-qLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-947" y="922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Myh-mH-OlD">
@@ -71,15 +96,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="XgI-5b-Nub" kind="relationship" relationship="rootViewController" id="gf6-tp-5Vx"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2f-e7-PLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-113" y="486"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="RSi-Of-Irt">
             <objects>
-                <viewController id="XgI-5b-Nub" sceneMemberID="viewController">
+                <viewController id="XgI-5b-Nub" customClass="DetailViewController" customModule="National_Park" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Jb-6J-rxs"/>
                         <viewControllerLayoutGuide type="bottom" id="H3b-fu-f2x"/>
@@ -89,6 +117,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="IDm-n0-oUq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6v-Lx-TgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -127,7 +156,7 @@
         <!--Table View Controller-->
         <scene sceneID="pve-8I-Eqi">
             <objects>
-                <tableViewController id="ROX-PM-G1M" userLabel="Table View Controller" customClass="TableViewController" customModule="National_Park" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableViewController" id="ROX-PM-G1M" userLabel="Table View Controller" customClass="TableViewController" customModule="National_Park" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="164" sectionHeaderHeight="28" sectionFooterHeight="28" id="sXE-Hf-OPu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,6 +200,7 @@
                                 <connections>
                                     <outlet property="sceneryImage" destination="Mfm-bp-3cP" id="xEY-Yd-aiA"/>
                                     <outlet property="sceneryLabel" destination="anh-nt-1x2" id="gTp-SG-y5N"/>
+                                    <segue destination="XgI-5b-Nub" kind="showDetail" id="NIR-mS-NwT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -184,10 +214,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YV-aG-vjR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="619" y="-207"/>
+            <point key="canvasLocation" x="619" y="-217"/>
         </scene>
     </scenes>
     <resources>
         <image name="Table" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="NIR-mS-NwT"/>
+    </inferredMetricsTieBreakers>
 </document>
