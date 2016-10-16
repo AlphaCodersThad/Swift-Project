@@ -1,8 +1,8 @@
 //
-//  CollectionViewController.swift
+//  PageViewController.swift
 //  National Park
 //
-//  Created by Thadea Achmad on 10/8/16.
+//  Created by Thadea Achmad on 10/15/16.
 //  Copyright © 2016 Thadea Achmad. All rights reserved.
 //
 

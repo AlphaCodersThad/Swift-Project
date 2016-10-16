@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25253CF21DA9BA0B00B60F0F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253CF11DA9BA0B00B60F0F /* CollectionViewController.swift */; };
 		25253CF41DA9BA1D00B60F0F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253CF31DA9BA1D00B60F0F /* TableViewController.swift */; };
 		25253CF61DA9BDF600B60F0F /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253CF51DA9BDF600B60F0F /* TableCell.swift */; };
-		25253CF81DA9BE1900B60F0F /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253CF71DA9BE1900B60F0F /* CollectionView.swift */; };
 		25253CFA1DA9C12000B60F0F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25253CF91DA9C12000B60F0F /* TabBar.swift */; };
 		2562026F1DA045FC00708C27 /* NationalParksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2562026E1DA045FC00708C27 /* NationalParksModel.swift */; };
 		259840671DA9E598002BCC04 /* arrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 259840461DA9E598002BCC04 /* arrowDown.png */; };
@@ -51,6 +49,10 @@
 		25CE9B9A1DA02D9E0075DBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25CE9B991DA02D9E0075DBA5 /* Assets.xcassets */; };
 		25CE9B9D1DA02D9E0075DBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25CE9B9B1DA02D9E0075DBA5 /* LaunchScreen.storyboard */; };
 		25CE9BA81DA02D9E0075DBA5 /* National_ParkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CE9BA71DA02D9E0075DBA5 /* National_ParkTests.swift */; };
+		25F87F881DB2FA92003C7E46 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F87F871DB2FA92003C7E46 /* DetailViewController.swift */; };
+		25F87F8C1DB2FAD7003C7E46 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F87F8B1DB2FAD7003C7E46 /* PageViewController.swift */; };
+		25F87F8E1DB2FAEA003C7E46 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F87F8D1DB2FAEA003C7E46 /* RootViewController.swift */; };
+		25F87F901DB2FF0A003C7E46 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F87F8F1DB2FF0A003C7E46 /* ContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		25253CF11DA9BA0B00B60F0F /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		25253CF31DA9BA1D00B60F0F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		25253CF51DA9BDF600B60F0F /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
-		25253CF71DA9BE1900B60F0F /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		25253CF91DA9C12000B60F0F /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		2562026E1DA045FC00708C27 /* NationalParksModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NationalParksModel.swift; sourceTree = "<group>"; };
 		259840461DA9E598002BCC04 /* arrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowDown.png; sourceTree = "<group>"; };
@@ -112,6 +112,10 @@
 		25CE9BA31DA02D9E0075DBA5 /* National ParkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "National ParkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25CE9BA71DA02D9E0075DBA5 /* National_ParkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = National_ParkTests.swift; sourceTree = "<group>"; };
 		25CE9BA91DA02D9E0075DBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25F87F871DB2FA92003C7E46 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		25F87F8B1DB2FAD7003C7E46 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		25F87F8D1DB2FAEA003C7E46 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		25F87F8F1DB2FF0A003C7E46 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +147,11 @@
 		25253CEF1DA9B9AE00B60F0F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				25253CF11DA9BA0B00B60F0F /* CollectionViewController.swift */,
+				25F87F8F1DB2FF0A003C7E46 /* ContentViewController.swift */,
 				25253CF31DA9BA1D00B60F0F /* TableViewController.swift */,
+				25F87F871DB2FA92003C7E46 /* DetailViewController.swift */,
+				25F87F8B1DB2FAD7003C7E46 /* PageViewController.swift */,
+				25F87F8D1DB2FAEA003C7E46 /* RootViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -154,7 +161,6 @@
 			children = (
 				25CE9B961DA02D9E0075DBA5 /* Main.storyboard */,
 				25253CF51DA9BDF600B60F0F /* TableCell.swift */,
-				25253CF71DA9BE1900B60F0F /* CollectionView.swift */,
 				25253CF91DA9C12000B60F0F /* TabBar.swift */,
 			);
 			name = View;
@@ -384,13 +390,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25253CF21DA9BA0B00B60F0F /* CollectionViewController.swift in Sources */,
 				25253CF61DA9BDF600B60F0F /* TableCell.swift in Sources */,
-				25253CF81DA9BE1900B60F0F /* CollectionView.swift in Sources */,
 				25253CFA1DA9C12000B60F0F /* TabBar.swift in Sources */,
+				25F87F8E1DB2FAEA003C7E46 /* RootViewController.swift in Sources */,
 				25CE9B931DA02D9E0075DBA5 /* AppDelegate.swift in Sources */,
+				25F87F901DB2FF0A003C7E46 /* ContentViewController.swift in Sources */,
+				25F87F881DB2FA92003C7E46 /* DetailViewController.swift in Sources */,
 				25253CF41DA9BA1D00B60F0F /* TableViewController.swift in Sources */,
 				2562026F1DA045FC00708C27 /* NationalParksModel.swift in Sources */,
+				25F87F8C1DB2FAD7003C7E46 /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
