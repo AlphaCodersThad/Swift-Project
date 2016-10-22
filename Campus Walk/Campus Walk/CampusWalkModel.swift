@@ -99,6 +99,10 @@ class buildingModel{
             return building.buildingName!
     }
     
+    func placesToPlot() -> [Building]{
+        return buildingData
+    }
+    
     
     
     
