@@ -14,6 +14,10 @@ class BuildingsTableViewController: UITableViewController{
     
     let buildingData = buildingModel.sharedInstance
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return buildingData.numberOfSections()
     }

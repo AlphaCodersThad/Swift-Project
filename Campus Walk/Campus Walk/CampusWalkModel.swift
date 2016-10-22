@@ -12,19 +12,18 @@ import MapKit
 class buildingModel{
     class Building: NSObject, MKAnnotation {
         
-        let buildingName:String?
-        let buildingYear:Int?
-        let buildingOpp: Int?
-        let photoFile: String?
+        var buildingName:String?
+        var buildingYear:Int?
+        var buildingOpp: Int?
+        var photoFile: String?
         let coordinate:CLLocationCoordinate2D
         var isFavorite: Bool?
     
-        init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, photoFile:String, isFavorite:Bool){
+        init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, isFavorite:Bool){
             self.buildingName = buildingName
             self.coordinate = coordinate
             self.buildingYear = buildingYear
             self.buildingOpp = buildingOpp
-            self.photoFile = photoFile
             self.isFavorite = isFavorite
             super.init()
         }
@@ -52,8 +51,13 @@ class buildingModel{
         var _buildingDictionary = [String:[Building]]()
         
         for dictionary in data {
-            let aBuilding = Building(buildingName: dictionary["name"] as! String, buildingOpp: dictionary["opp_bldg_code"] as! Int, buildingYear: dictionary["year_constructed"] as! Int, coordinate: CLLocationCoordinate2D(latitude: dictionary["latitute"] as! CLLocationDegrees, longitude: dictionary["longitude"] as! CLLocationDegrees), photoFile: dictionary["photo"] as! String, isFavorite: false)
+            let aBuilding = Building(buildingName: dictionary["name"] as! String, buildingOpp: dictionary["opp_bldg_code"] as! Int, buildingYear: dictionary["year_constructed"] as! Int, coordinate: CLLocationCoordinate2D(latitude: dictionary["latitude"] as! CLLocationDegrees, longitude: dictionary["longitude"] as! CLLocationDegrees), isFavorite: false)
             _building.append(aBuilding)
+            if (dictionary["photo"] != nil){
+                aBuilding.photoFile = dictionary["photo"] as! String
+            } else {
+                aBuilding.photoFile = nil
+            }
             let firstLetter = aBuilding.buildingName!.firstLetter()!
             
             if let _ = _buildingDictionary[firstLetter] {

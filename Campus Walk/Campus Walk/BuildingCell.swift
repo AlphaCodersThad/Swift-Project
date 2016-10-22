@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 class BuildingCell: UITableViewCell {
     
+    
     @IBOutlet weak var buildingName: UILabel!
     
     override func awakeFromNib() {
