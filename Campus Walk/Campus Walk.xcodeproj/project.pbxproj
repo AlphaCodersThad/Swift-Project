@@ -50,6 +50,7 @@
 		25BB603A1DBBC69100241E6A /* String+FirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BB60391DBBC69100241E6A /* String+FirstLetter.swift */; };
 		25BB60401DBBCE6700241E6A /* BuildingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BB603F1DBBCE6700241E6A /* BuildingsTableViewController.swift */; };
 		25BB60431DBBD3EA00241E6A /* BuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BB60421DBBD3EA00241E6A /* BuildingCell.swift */; };
+		25D7D7BF1DBC2279005C55D1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D7D7BE1DBC2279005C55D1 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		25BB60391DBBC69100241E6A /* String+FirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FirstLetter.swift"; sourceTree = "<group>"; };
 		25BB603F1DBBCE6700241E6A /* BuildingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingsTableViewController.swift; sourceTree = "<group>"; };
 		25BB60421DBBD3EA00241E6A /* BuildingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildingCell.swift; sourceTree = "<group>"; };
+		25D7D7BE1DBC2279005C55D1 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 			children = (
 				25777F4E1DB7FBA900BFF5BC /* MapViewController.swift */,
 				25BB603F1DBBCE6700241E6A /* BuildingsTableViewController.swift */,
+				25D7D7BE1DBC2279005C55D1 /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				25BB60431DBBD3EA00241E6A /* BuildingCell.swift in Sources */,
 				257432A61DBB425100A88EDB /* CampusWalkModel.swift in Sources */,
 				25777F4D1DB7FBA900BFF5BC /* AppDelegate.swift in Sources */,
+				25D7D7BF1DBC2279005C55D1 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

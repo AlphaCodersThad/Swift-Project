@@ -80,6 +80,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="buildingName" destination="cz5-Yz-aQ6" id="HMX-e9-8wY"/>
+                                    <segue destination="4z6-St-nur" kind="show" id="aPN-jM-XpH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -93,6 +94,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dy-Fd-kUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1506" y="795"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="wdi-NA-EDh">
+            <objects>
+                <viewController id="4z6-St-nur" customClass="DetailViewController" customModule="Campus_Walk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="85z-qy-QLa"/>
+                        <viewControllerLayoutGuide type="bottom" id="HlC-xg-Mrl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NOk-NQ-Cfc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IA1-ky-sjr">
+                                <rect key="frame" x="180" y="105" width="240" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFa-Af-dpy">
+                                <rect key="frame" x="180" y="265" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="yearLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nk-XD-xPi">
+                                <rect key="frame" x="180" y="294" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLA-Ny-A1e">
+                                <rect key="frame" x="180" y="352" width="67" height="30"/>
+                                <state key="normal" title="favButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-EZ-Qdm">
+                                <rect key="frame" x="180" y="390" width="67" height="30"/>
+                                <state key="normal" title="pinButton"/>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50k-fW-eqY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="RLK-i1-IZx"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IA1-ky-sjr" firstAttribute="top" secondItem="50k-fW-eqY" secondAttribute="bottom" constant="61" id="5cL-f1-3Sw"/>
+                            <constraint firstItem="9nk-XD-xPi" firstAttribute="top" secondItem="DFa-Af-dpy" secondAttribute="bottom" constant="8" id="7AQ-CK-AfZ"/>
+                            <constraint firstItem="IA1-ky-sjr" firstAttribute="leading" secondItem="NOk-NQ-Cfc" secondAttribute="leadingMargin" constant="160" id="FGr-IY-Lf7"/>
+                            <constraint firstItem="RLA-Ny-A1e" firstAttribute="top" secondItem="9nk-XD-xPi" secondAttribute="bottom" constant="37" id="IVT-A9-wdN"/>
+                            <constraint firstItem="RLA-Ny-A1e" firstAttribute="leading" secondItem="9nk-XD-xPi" secondAttribute="leading" id="Qvx-eC-Tsf"/>
+                            <constraint firstItem="IA1-ky-sjr" firstAttribute="trailing" secondItem="NOk-NQ-Cfc" secondAttribute="trailingMargin" constant="-160" id="Udk-H5-qwY"/>
+                            <constraint firstItem="9nk-XD-xPi" firstAttribute="leading" secondItem="DFa-Af-dpy" secondAttribute="leading" id="UrM-vt-HY6"/>
+                            <constraint firstItem="oqe-EZ-Qdm" firstAttribute="bottom" secondItem="HlC-xg-Mrl" secondAttribute="top" constant="-180" id="Yug-yZ-Bhy"/>
+                            <constraint firstItem="IA1-ky-sjr" firstAttribute="centerX" secondItem="NOk-NQ-Cfc" secondAttribute="centerX" id="Zb1-to-wj4"/>
+                            <constraint firstItem="IA1-ky-sjr" firstAttribute="bottom" secondItem="HlC-xg-Mrl" secondAttribute="top" constant="-367" id="b7V-rS-rA4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DFa-Af-dpy" secondAttribute="trailing" constant="316" id="icr-Me-RaP"/>
+                            <constraint firstItem="DFa-Af-dpy" firstAttribute="leading" secondItem="IA1-ky-sjr" secondAttribute="leading" id="kdW-2J-FWy"/>
+                            <constraint firstItem="50k-fW-eqY" firstAttribute="leading" secondItem="NOk-NQ-Cfc" secondAttribute="leadingMargin" constant="-20" id="lAL-wi-wiP"/>
+                            <constraint firstItem="50k-fW-eqY" firstAttribute="top" secondItem="NOk-NQ-Cfc" secondAttribute="topMargin" id="o9M-5D-n4q"/>
+                            <constraint firstItem="oqe-EZ-Qdm" firstAttribute="top" secondItem="RLA-Ny-A1e" secondAttribute="bottom" constant="8" id="oRH-DV-WHG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="50k-fW-eqY" secondAttribute="trailing" constant="-20" id="rIH-RF-P9E"/>
+                            <constraint firstItem="oqe-EZ-Qdm" firstAttribute="leading" secondItem="RLA-Ny-A1e" secondAttribute="leading" id="rdo-YP-Enh"/>
+                            <constraint firstItem="DFa-Af-dpy" firstAttribute="top" secondItem="IA1-ky-sjr" secondAttribute="bottom" constant="32" id="uaj-GT-rjW"/>
+                            <constraint firstItem="DFa-Af-dpy" firstAttribute="leading" secondItem="NOk-NQ-Cfc" secondAttribute="leadingMargin" constant="160" id="ygI-86-jdf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buildingImage" destination="IA1-ky-sjr" id="h1r-4M-dSy"/>
+                        <outlet property="buildingNameLabel" destination="DFa-Af-dpy" id="5uQ-x0-yLJ"/>
+                        <outlet property="buildingYearLabel" destination="9nk-XD-xPi" id="Jla-v3-dTx"/>
+                        <outlet property="favoriteButton" destination="RLA-Ny-A1e" id="kJP-Vo-TYZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hq7-MA-Lpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2326" y="795"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sxf-fT-aB1">
