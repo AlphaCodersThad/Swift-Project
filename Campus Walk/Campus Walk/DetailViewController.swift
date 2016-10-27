@@ -16,11 +16,15 @@ protocol BuildingDetailDataSource: class {
 }
 
 class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    
     weak var dataSource: BuildingDetailDataSource?
     @IBOutlet weak var buildingImage: UIImageView!
     @IBOutlet weak var buildingNameLabel: UILabel!
     @IBOutlet weak var buildingYearLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    
+    
     var _name: String = ""
     var _opp_bldg_code: String = ""
     var _year_constructed: String = ""
@@ -40,12 +44,25 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         _isFavorite = (dataSource?.currentBuilding.isFavorite)!
         
         
+        // Display building name
         buildingNameLabel.text = _name
-        buildingYearLabel.text = _year_constructed
+        
+        // Display year constructed
+        switch _year_constructed{
+        case "0":
+            buildingYearLabel.text = "Year Constructed: Unknown"
+        default:
+            buildingYearLabel.text = "Year Constructed: " + _year_constructed
+        }
         if !_isFavorite! {
             favoriteButton.setTitle("Add to Favorite", forState: UIControlState.Normal)
         }
-        buildingImage.image = UIImage(named: _photoFile)
+        
+        if !_photoFile.isEmpty {
+            buildingImage.image = UIImage(named: (_photoFile + ".jpg"))
+            buildingImage.contentMode = UIViewContentMode.ScaleAspectFit
+        }
+        
         
         //subtitleTextField.flashScrollIndicators()
         //subtitleTextField.contentOffset.y = 0

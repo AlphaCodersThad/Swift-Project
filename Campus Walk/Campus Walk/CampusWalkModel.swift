@@ -54,7 +54,7 @@ class buildingModel{
             let aBuilding = Building(buildingName: dictionary["name"] as! String, buildingOpp: dictionary["opp_bldg_code"] as! Int, buildingYear: dictionary["year_constructed"] as! Int, coordinate: CLLocationCoordinate2D(latitude: dictionary["latitude"] as! CLLocationDegrees, longitude: dictionary["longitude"] as! CLLocationDegrees), isFavorite: false)
             _building.append(aBuilding)
             if (dictionary["photo"] != nil){
-                aBuilding.photoFile = dictionary["photo"] as! String
+                aBuilding.photoFile = dictionary["photo"] as? String
             } else {
                 aBuilding.photoFile = nil
             }
