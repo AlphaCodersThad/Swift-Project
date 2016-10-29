@@ -15,16 +15,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet weak var mapView: MKMapView!
     
-    let building = buildingModel.sharedInstance
+    let buildingMutableData = buildingModel.sharedInstance
     let locationManager = CLLocationManager()
     
+    
+    // This coordinate is taken from Old Main, which is pretty much center of Penn State
     let startPoint = CLLocationCoordinate2D(latitude: 40.7965, longitude: -77.8627)
     let startingSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     let calloutImageSize = CGSize(width: 40, height: 40)
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMapView()
+        
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.pinDrop(_:)))
+        mapView.addGestureRecognizer(recognizer)
+        configureLocationManager()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,6 +40,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 locationManager.requestWhenInUseAuthorization()
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //mapView.addAnnotations(buildingMutableData.placesToPlot())
+        if let _ = buildingMutableData.currentPin {
+            let _lat = CLLocationDegrees(buildingMutableData.currentPin!.coordinate.latitude)
+            let _long = CLLocationDegrees(buildingMutableData.currentPin!.coordinate.longitude)
+            let centerLocation = CLLocation(latitude: _lat, longitude: _long)
+            mapView.addAnnotation(buildingMutableData.currentPin!)
+            centerMapOnLocation(centerLocation)
+        }
+    }
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpanMake(0.01, 0.01))
+        mapView.setRegion(coordinateRegion, animated: true)
+        mapView.regionThatFits(coordinateRegion)
     }
 ///////////////////////////////////////////////////////////
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -77,59 +101,61 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func configureMapView() {
         mapView.region = MKCoordinateRegion(center: startPoint, span: startingSpan)
-        mapView.addAnnotations(building.placesToPlot())
+        //mapView.addAnnotations(building.placesToPlot())
         mapView.delegate = self
     }
     
-    /*
+    // Used to create annotation whenever it is needed on the Mao View
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
         
         if let annotation = annotation as? buildingModel.Building {
-            let identifier = String(annotation.category)
-            let view: MKAnnotationView
-            if let dequedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
-                dequedView.annotation = annotation
-                view = dequedView
+            let identifier = "BuildingPin"
+            var view: MKAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
             } else {
-                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                
-                let image = UIImage(named: annotation.photoName!)
-                let imageView = UIImageView(image: image)
-                imageView.frame.size = calloutImageSize
-                
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
-                view.leftCalloutAccessoryView = imageView
-                
-                let buildingType = annotation.category
-                view.image = model.imageForBuildingType(buildingType)
+                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                pinView.canShowCallout = true
+                pinView.calloutOffset = CGPoint(x: -5, y: 5)
+                pinView.pinTintColor = (buildingMutableData.currentPin?.title == annotation.title) ? UIColor.redColor() : UIColor.blueColor()
+                pinView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                return pinView
             }
             return view
         }
-        
-        if annotation is MKPointAnnotation {
-            let identifier = "DroppedPin"
-            var view: MKPinAnnotationView
-            if let dequedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView {
-                dequedView.annotation = annotation
-                view = dequedView
-            } else {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                
-                view.canShowCallout = true
-                view.pinTintColor = UIColor.blueColor()
-                view.animatesDrop = true
-                view.draggable = true
-            }
-            
-            return view
-        }
-        
         return nil
+
+    }
+    
+
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        self.performSegueWithIdentifier("DetailSegue", sender: self)
+    }
+    
+    /*func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        building.building
+    }
+    
+    var currentBuilding : buildingModel.Building {
+        get{
+            return MKAnnotation(self.mapView.selectedAnnotations)
+        }
     }*/
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        self.performSegueWithIdentifier("detailSegue", sender: self)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        /*switch segue.identifier! {
+        case "DetailSegue":
+            if let detailViewController = segue.destinationViewController as? DetailViewController {
+                let annotation = mapView.selectedAnnotations.first! as! buildingModel.Building
+                detailViewController.dataSource?.currentBuilding = annotation
+            }
+        default:
+            assert(false, "Unhandled Segue")
+        }*/
     }
 ///////////////////////////////////////////////////////////
     override func didReceiveMemoryWarning() {

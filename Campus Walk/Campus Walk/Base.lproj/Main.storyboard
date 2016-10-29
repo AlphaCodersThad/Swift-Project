@@ -162,6 +162,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-EZ-Qdm">
                                 <rect key="frame" x="0.0" y="390" width="600" height="30"/>
                                 <state key="normal" title="pinButton"/>
+                                <connections>
+                                    <action selector="pinToMapButton:" destination="4z6-St-nur" eventType="touchUpInside" id="bTq-gw-a7Z"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50k-fW-eqY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>

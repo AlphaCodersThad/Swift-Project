@@ -12,11 +12,16 @@ import MapKit
 class buildingModel{
     class Building: NSObject, MKAnnotation {
         
+        
+        //MKAnnotation Protocol required
+        let title: String?
+        let subtitle: String?
+        let coordinate:CLLocationCoordinate2D
+        
         var buildingName:String?
         var buildingYear:Int?
         var buildingOpp: Int?
         var photoFile: String?
-        let coordinate:CLLocationCoordinate2D
         var isFavorite: Bool?
     
         init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, isFavorite:Bool){
@@ -25,6 +30,9 @@ class buildingModel{
             self.buildingYear = buildingYear
             self.buildingOpp = buildingOpp
             self.isFavorite = isFavorite
+            
+            self.title = buildingName
+            self.subtitle = " Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)"
             super.init()
         }
         
@@ -37,11 +45,17 @@ class buildingModel{
     }
     
     
+    
+    
+    
     static let sharedInstance = buildingModel()
     private let buildingData: [Building]
     private var favoriteBuilding: [Building]
     private let buildingDictionary: [String:[Building]]
     private let allKeys: [String]
+    
+    // temp data for pinning building to map -> DetailViewController
+    var currentPin : Building?
     
     private init(){
         let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
@@ -102,8 +116,4 @@ class buildingModel{
     func placesToPlot() -> [Building]{
         return buildingData
     }
-    
-    
-    
-    
 }

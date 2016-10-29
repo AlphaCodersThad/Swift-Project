@@ -12,7 +12,7 @@ import MapKit
 
 protocol BuildingDetailDataSource: class {
     var currentBuilding: buildingModel.Building { get }
-    var indexPath: NSIndexPath { get}
+    var indexPath: NSIndexPath { get }
 }
 
 class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -24,6 +24,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var buildingYearLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    let buildingMutableData = buildingModel.sharedInstance
     
     var _name: String = ""
     var _opp_bldg_code: String = ""
@@ -62,28 +63,19 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             buildingImage.image = UIImage(named: (_photoFile + ".jpg"))
             buildingImage.contentMode = UIViewContentMode.ScaleAspectFit
         }
-        
-        
-        //subtitleTextField.flashScrollIndicators()
-        //subtitleTextField.contentOffset.y = 0
-        
-        // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func pinToMapButton(sender: UIButton) {
+        buildingMutableData.currentPin = dataSource?.currentBuilding
+        self.tabBarController?.selectedIndex = 0
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    /*func configure(name: String, opp_bldg_code:String, year_constructed:String, coordinate:CLLocationCoordinate2D, isFavorite: Bool, photoFile: String){
-        _name = name
-        _opp_bldg_code = opp_bldg_code
-        _year_constructed = year_constructed
-        _coordinate = "Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)"
-        _isFavorite = isFavorite
-        _photoFile = photoFile
-
-    }*/
-
     
 }
