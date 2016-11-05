@@ -9,45 +9,43 @@
 import Foundation
 import MapKit
 
-class buildingModel{
-    class Building: NSObject, MKAnnotation {
-        
-        
-        //MKAnnotation Protocol required
-        let title: String?
-        let subtitle: String?
-        let coordinate:CLLocationCoordinate2D
-        
-        var buildingName:String?
-        var buildingYear:Int?
-        var buildingOpp: Int?
-        var photoFile: String?
-        var isFavorite: Bool?
+
+class Building: NSObject, NSCoding{
     
-        init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, isFavorite:Bool){
-            self.buildingName = buildingName
-            self.coordinate = coordinate
-            self.buildingYear = buildingYear
-            self.buildingOpp = buildingOpp
-            self.isFavorite = isFavorite
-            
-            self.title = buildingName
-            self.subtitle = " Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)"
-            super.init()
-        }
+    
+    var buildingName:String?
+    var buildingYear:Int?
+    var buildingOpp: Int?
+    
+    let latitude:CLLocationDegrees
+    let longitude: CLLocationDegrees
+    let coordinate:CLLocationCoordinate2D
+    
+    var photoFile: String?
+    var isFavorite: Bool?
+    
+    init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, isFavorite:Bool){
+        self.buildingName = buildingName
+        self.coordinate = coordinate
+        self.buildingYear = buildingYear
+        self.buildingOpp = buildingOpp
+        self.isFavorite = isFavorite
         
-        func mapItem() -> MKMapItem {
-            let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = buildingName
-            return mapItem
-        }
+        self.title = buildingName
+        self.subtitle = " Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)"
+        super.init()
     }
     
-    
-    
-    
-    
+    func mapItem() -> MKMapItem {
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = buildingName
+        return mapItem
+    }
+}
+
+
+class buildingModel{
     static let sharedInstance = buildingModel()
     private let buildingData: [Building]
     private var favoriteBuilding: [Building]
@@ -69,8 +67,6 @@ class buildingModel{
             _building.append(aBuilding)
             if (dictionary["photo"] != nil){
                 aBuilding.photoFile = dictionary["photo"] as? String
-            } else {
-                aBuilding.photoFile = nil
             }
             let firstLetter = aBuilding.buildingName!.firstLetter()!
             
@@ -111,6 +107,25 @@ class buildingModel{
     func buildingNameAtPath(indexPath: NSIndexPath) -> String{
         let building = buildingAtPath(indexPath)
             return building.buildingName!
+    }
+    
+    func getIndexPath(name: String) -> NSIndexPath{
+        let firstLetter = name.firstLetter()!
+        var section: Int?
+        var row: Int?
+        let indexPath: NSIndexPath
+        for i in 0...(allKeys.count-1) {
+            if firstLetter == allKeys[i]{
+                section = i
+            }
+        }
+        for j in 0...(numberOfBuildingsForSection(section!)-1){
+            if name == buildingDictionary[firstLetter]![j].buildingName{
+                row = j
+            }
+        }
+        indexPath = NSIndexPath(forRow: row!, inSection: section!)
+        return indexPath
     }
     
     func placesToPlot() -> [Building]{

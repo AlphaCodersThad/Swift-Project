@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Foundation
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BuildingDetailDataSource{
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -23,7 +23,22 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     let startPoint = CLLocationCoordinate2D(latitude: 40.7965, longitude: -77.8627)
     let startingSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     let calloutImageSize = CGSize(width: 40, height: 40)
+    var currentIndex: NSIndexPath?
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    
+    // BuildingDetailDataSource variables
+    var currentBuilding: Building {
+        get { return buildingMutableData.currentPin! }
+    }
+    
+    var indexPath: NSIndexPath {
+        get{ return currentIndex!}
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +73,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.regionThatFits(coordinateRegion)
     }
-///////////////////////////////////////////////////////////
+
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             mapView.showsUserLocation = true
@@ -111,7 +126,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return nil
         }
         
-        if let annotation = annotation as? buildingModel.Building {
+        if let annotation = annotation as? Building {
             let identifier = "BuildingPin"
             var view: MKAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
@@ -128,41 +143,35 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             return view
         }
         return nil
-
     }
     
-
+    
+    // Sort of useless right now.. I wanted to connect to detailViewController, but the way the protocol is set up is a pain...
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         self.performSegueWithIdentifier("DetailSegue", sender: self)
     }
     
-    /*func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        building.building
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        // Getting index here..
+        let _buildingName = self.mapView.selectedAnnotations.first!.title!
+        let path: NSIndexPath? = buildingMutableData.getIndexPath(_buildingName!)
+        buildingMutableData.currentPin = buildingMutableData.buildingAtPath(path!)
+        self.currentIndex = path!
     }
     
-    var currentBuilding : buildingModel.Building {
-        get{
-            return MKAnnotation(self.mapView.selectedAnnotations)
-        }
-    }*/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        /*switch segue.identifier! {
+        switch segue.identifier! {
         case "DetailSegue":
             if let detailViewController = segue.destinationViewController as? DetailViewController {
-                let annotation = mapView.selectedAnnotations.first! as! buildingModel.Building
-                detailViewController.dataSource?.currentBuilding = annotation
+                //let annotation = mapView.selectedAnnotations.first! as! buildingModel.Building
+                detailViewController.dataSource? = self
             }
         default:
             assert(false, "Unhandled Segue")
-        }*/
+        }
     }
-///////////////////////////////////////////////////////////
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    ///////////////////////////////////////////////////////////
 
 }
 

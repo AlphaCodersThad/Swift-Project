@@ -41,10 +41,8 @@ class BuildingsTableViewController: UITableViewController, BuildingDetailDataSou
         return cell
     }
     
-    var currentBuilding : buildingModel.Building {
-        get {
-            return buildingMutableData.buildingAtPath(self.tableView.indexPathForSelectedRow!)
-        }
+    var currentBuilding : Building {
+        get { return buildingMutableData.buildingAtPath(self.tableView.indexPathForSelectedRow!) }
     }
     
     var indexPath : NSIndexPath {

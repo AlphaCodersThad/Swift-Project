@@ -79,6 +79,7 @@
                     <navigationItem key="navigationItem" id="Zb5-Sb-fGZ"/>
                     <connections>
                         <outlet property="mapView" destination="Mqs-dD-cXf" id="Gzw-tW-pLb"/>
+                        <segue destination="4z6-St-nur" kind="show" identifier="DetailSegue" action="showDetailViewController:sender:" id="OJx-Wu-VkY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -129,7 +130,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dy-Fd-kUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2321" y="793"/>
+            <point key="canvasLocation" x="2313" y="901"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="wdi-NA-EDh">
@@ -158,6 +159,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLA-Ny-A1e">
                                 <rect key="frame" x="0.0" y="352" width="600" height="30"/>
                                 <state key="normal" title="favButton"/>
+                                <connections>
+                                    <action selector="addToFavorite:" destination="4z6-St-nur" eventType="touchUpInside" id="Rgz-Gv-OZl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-EZ-Qdm">
                                 <rect key="frame" x="0.0" y="390" width="600" height="30"/>
@@ -210,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hq7-MA-Lpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3141" y="793"/>
+            <point key="canvasLocation" x="3127" y="547"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sxf-fT-aB1">
@@ -232,4 +236,7 @@
             <point key="canvasLocation" x="682" y="489"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="OJx-Wu-VkY"/>
+    </inferredMetricsTieBreakers>
 </document>

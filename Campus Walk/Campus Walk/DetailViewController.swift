@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 
 protocol BuildingDetailDataSource: class {
-    var currentBuilding: buildingModel.Building { get }
+    var currentBuilding: Building { get }
     var indexPath: NSIndexPath { get }
 }
 
@@ -25,6 +25,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var favoriteButton: UIButton!
     
     let buildingMutableData = buildingModel.sharedInstance
+    let imagePicker = UIImagePickerController()
     
     var _name: String = ""
     var _opp_bldg_code: String = ""
@@ -56,7 +57,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
             buildingYearLabel.text = "Year Constructed: " + _year_constructed
         }
         if !_isFavorite! {
-            favoriteButton.setTitle("Add to Favorite", forState: UIControlState.Normal)
+            favoriteButton.setTitle("Add to Favorites", forState: UIControlState.Normal)
         }
         
         if !_photoFile.isEmpty {
@@ -65,10 +66,46 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    func imageTapped (img : AnyObject ) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .PhotoLibrary
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        buildingImage.image = image
+        if let viewControllers = navigationController?.viewControllers {
+            // print(viewControllers[viewControllers.count])
+            print(viewControllers[viewControllers.count - 1])
+            /*if !viewControllers[viewControllers.count - 1].isKindOfClass() {
+             dismissViewControllerAnimated(false, completion: nil)
+             }*/
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     @IBAction func pinToMapButton(sender: UIButton) {
         buildingMutableData.currentPin = dataSource?.currentBuilding
         self.tabBarController?.selectedIndex = 0
+    }
+    
+    /*@IBAction func addToFavorite(sender: AnyObject) {
+        if sender.titleLabel?.text == "Add To Favorites" {
+            addToFavorites()
+        } else {
+            removeFromFavorites()
+        }
+        self.navigationController?.popViewControllerAnimated(true)
+    }*/
+    
+    
+    override func viewWillLayoutSubviews() {
+        reloadInputViews()
     }
     
     
@@ -76,6 +113,13 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    /*func configureView(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, photoFile: String){
+        _title = title
+        _subtitle = subtitle
+        _coordinate = coordinate
+        _photoFile = photoFile
+    }*/
     
     
 }
