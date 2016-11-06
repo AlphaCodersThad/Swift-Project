@@ -10,64 +10,188 @@ import Foundation
 import MapKit
 
 
-class Building: NSObject, NSCoding{
+class Building: NSObject, NSCoding {
     
     
     var buildingName:String?
     var buildingYear:Int?
     var buildingOpp: Int?
     
-    let latitude:CLLocationDegrees
-    let longitude: CLLocationDegrees
+    let buildingLatitude:CLLocationDegrees
+    let buildingLongitude: CLLocationDegrees
     let coordinate:CLLocationCoordinate2D
     
     var photoFile: String?
-    var isFavorite: Bool?
+    var isFavorite: Bool
     
-    init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, isFavorite:Bool){
+    init(buildingName:String, buildingOpp:Int, buildingYear:Int, coordinate:CLLocationCoordinate2D, photoFile: String, isFavorite:Bool){
         self.buildingName = buildingName
-        self.coordinate = coordinate
         self.buildingYear = buildingYear
         self.buildingOpp = buildingOpp
-        self.isFavorite = isFavorite
         
-        self.title = buildingName
-        self.subtitle = " Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)"
+        self.coordinate = coordinate
+        self.buildingLatitude = coordinate.latitude
+        self.buildingLongitude = coordinate.longitude
+        
+        self.photoFile = photoFile
+        self.isFavorite = isFavorite
+
+        super.init()
+    }
+ 
+                    ////////////// NSCoding Protocol //////////////
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(buildingName, forKey: "buildingName")
+        aCoder.encodeObject(buildingYear, forKey: "buildingYear")
+        aCoder.encodeObject(buildingOpp, forKey: "buildingOpp")
+        aCoder.encodeObject(buildingLatitude, forKey: "buildingLatitude")
+        aCoder.encodeObject(buildingLongitude, forKey: "buildingLongitude")
+        aCoder.encodeObject(photoFile, forKey: "photoFile")
+        aCoder.encodeObject(isFavorite, forKey: "IsFavorite")
+    }
+    
+    required init?(coder aDecoder : NSCoder){
+        self.buildingName = aDecoder.decodeObjectForKey("buildingName") as? String
+        self.buildingOpp = aDecoder.decodeObjectForKey("buildingOpp") as? Int
+        self.buildingYear = aDecoder.decodeObjectForKey("buildingYear") as? Int
+        
+        self.buildingLatitude = aDecoder.decodeObjectForKey("buildingLatitude") as! CLLocationDegrees
+        self.buildingLongitude = aDecoder.decodeObjectForKey("buildingLongitude") as! CLLocationDegrees
+        self.coordinate = CLLocationCoordinate2DMake(buildingLatitude, buildingLongitude)
+
+        self.photoFile = aDecoder.decodeObjectForKey("photoFile") as? String
+        self.isFavorite = aDecoder.decodeObjectForKey("isFavorite") as! Bool
+    }
+                    //////// END OF NSCoding Protocol //////////////
+}
+
+// Should be used for annotation purpose --> Seperate than the "Building" class model
+class BuildingMapData: NSObject, NSCoding, MKAnnotation {
+    let title: String?
+    let coordinate: CLLocationCoordinate2D
+    let buildingLatitude: CLLocationDegrees
+    let buildingLongitude: CLLocationDegrees
+    
+    let photoName:String?
+    
+    init(title: String, coordinate: CLLocationCoordinate2D, photoName: String) {
+        self.title = title
+        self.coordinate = coordinate
+        self.photoName = photoName
+        self.buildingLatitude = coordinate.latitude
+        self.buildingLongitude = coordinate.longitude
         super.init()
     }
     
+    // MKAnnotation Protocol
     func mapItem() -> MKMapItem {
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = buildingName
+        mapItem.name = title
         return mapItem
+    }
+    
+    // NSCoding Protocol
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.title, forKey: "title")
+        aCoder.encodeObject(self.buildingLatitude, forKey: "buildingLatitude")
+        aCoder.encodeObject(self.buildingLongitude, forKey: "buildingLongitude")
+        aCoder.encodeObject(self.photoName, forKey: "photoName")
+    }
+    
+    required init?(coder aDecoder : NSCoder){
+        self.title = aDecoder.decodeObjectForKey("title") as? String
+        self.photoName = aDecoder.decodeObjectForKey("photoName") as? String
+        self.buildingLatitude = aDecoder.decodeObjectForKey("buildingLatitude") as! CLLocationDegrees
+        self.buildingLongitude = aDecoder.decodeObjectForKey("buildingLongitude") as! CLLocationDegrees
+        self.coordinate = CLLocationCoordinate2DMake(buildingLatitude, buildingLongitude)
+        
     }
 }
 
-
-class buildingModel{
-    static let sharedInstance = buildingModel()
-    private let buildingData: [Building]
-    private var favoriteBuilding: [Building]
-    private let buildingDictionary: [String:[Building]]
-    private let allKeys: [String]
+class CampusModel: NSObject, NSCoding {
     
-    // temp data for pinning building to map -> DetailViewController
-    var currentPin : Building?
+    static let sharedInstance = CampusModel()
+    private var buildingData = [Building]()
     
-    private init(){
-        let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
-        let data = NSArray(contentsOfFile: path!) as! [[String:AnyObject]]
-        
+    private var buildingDictionary = [String:[Building]]()
+    private var allKeys = [String]()
+    private let archivePath = "DataArchive"
+    
+    // Map Data
+    var currentPin: BuildingMapData?
+    var plotBuilding = [BuildingMapData]()
+    var removeBuilding = [BuildingMapData]()
+    var favoriteBuilding = [String:[Building]]()
+    var favoriteKeys = [String]()
+    var MapViewOption: Int?
+    
+    private override init(){
+        if let unarchivedModel = NSUserDefaults.standardUserDefaults().objectForKey(archivePath) as? NSData{
+            let campusModel = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedModel) as? CampusModel
+            
+            buildingDictionary = campusModel!.buildingDictionary
+            allKeys = campusModel!.allKeys
+            
+            currentPin = campusModel!.currentPin
+            plotBuilding = campusModel!.plotBuilding
+            removeBuilding = campusModel!.removeBuilding
+            favoriteBuilding = campusModel!.favoriteBuilding
+            favoriteKeys = campusModel!.favoriteKeys
+            MapViewOption = campusModel!.MapViewOption
+        } else{
+            let path = NSBundle.mainBundle().pathForResource("buildings", ofType: "plist")
+            let data = NSArray(contentsOfFile: path!) as! [[String:AnyObject]]
+            
+            var _building = [Building]()
+            var _buildingDictionary = [String:[Building]]()
+            
+            for dictionary in data {
+                let aBuilding = Building(buildingName: dictionary["name"] as! String,
+                                         buildingOpp: dictionary["opp_bldg_code"] as! Int,
+                                         buildingYear: dictionary["year_constructed"] as! Int,
+                                         coordinate: CLLocationCoordinate2D(
+                                            latitude: dictionary["latitude"] as! CLLocationDegrees,
+                                            longitude: dictionary["longitude"] as! CLLocationDegrees),
+                                         photoFile: dictionary["photo"] as! String,
+                                         isFavorite: false)
+                
+                _building.append(aBuilding)
+                let firstLetter = aBuilding.buildingName!.firstLetter()!
+                
+                if let _ = _buildingDictionary[firstLetter] {
+                    _buildingDictionary[firstLetter]!.append(aBuilding)
+                } else {
+                    _buildingDictionary[firstLetter] = [aBuilding]
+                }
+            }
+            //favoriteBuilding = [Building]()
+            buildingData = _building
+            buildingDictionary = _buildingDictionary
+            let keys = Array(buildingDictionary.keys)
+            allKeys = keys.sort()
+            for key in allKeys {
+                buildingDictionary[key]!.sortInPlace({ $0.buildingName < $1.buildingName})
+            }
+            MapViewOption = 0
+        }
+    }
+    
+    private func importData(path: String?){
+        let data = NSArray(contentsOfFile: path!) as!  [[String:AnyObject]]
         var _building = [Building]()
         var _buildingDictionary = [String:[Building]]()
-        
         for dictionary in data {
-            let aBuilding = Building(buildingName: dictionary["name"] as! String, buildingOpp: dictionary["opp_bldg_code"] as! Int, buildingYear: dictionary["year_constructed"] as! Int, coordinate: CLLocationCoordinate2D(latitude: dictionary["latitude"] as! CLLocationDegrees, longitude: dictionary["longitude"] as! CLLocationDegrees), isFavorite: false)
+            let aBuilding = Building(buildingName: dictionary["name"] as! String,
+                                     buildingOpp: dictionary["opp_bldg_code"] as! Int,
+                                     buildingYear: dictionary["year_constructed"] as! Int,
+                                     coordinate: CLLocationCoordinate2D(
+                                        latitude: dictionary["latitude"] as! CLLocationDegrees,
+                                        longitude: dictionary["longitude"] as! CLLocationDegrees),
+                                     photoFile: dictionary["photo"] as! String,
+                                     isFavorite: false)
+            
             _building.append(aBuilding)
-            if (dictionary["photo"] != nil){
-                aBuilding.photoFile = dictionary["photo"] as? String
-            }
             let firstLetter = aBuilding.buildingName!.firstLetter()!
             
             if let _ = _buildingDictionary[firstLetter] {
@@ -76,11 +200,33 @@ class buildingModel{
                 _buildingDictionary[firstLetter] = [aBuilding]
             }
         }
-        favoriteBuilding = [Building]()
-        buildingData = _building
-        buildingDictionary = _buildingDictionary
-        let keys = Array(buildingDictionary.keys)
-        allKeys = keys.sort()
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(buildingDictionary, forKey : "buildingDictionary")
+        aCoder.encodeObject(allKeys, forKey : "allKeys")
+        aCoder.encodeObject(currentPin, forKey: "currentPin")
+        aCoder.encodeObject(plotBuilding, forKey : "plotBuilding")
+        aCoder.encodeObject(removeBuilding, forKey : "removeBuilding")
+        aCoder.encodeObject(favoriteBuilding, forKey : "favoriteBuilding")
+        aCoder.encodeObject(favoriteKeys, forKey : "favoriteKeys")
+        aCoder.encodeObject(MapViewOption, forKey: "MapViewOption")
+    }
+    
+    required init?(coder aDecoder : NSCoder){
+        self.buildingDictionary = aDecoder.decodeObjectForKey("buildingDictionary") as! [String:[Building]]
+        self.allKeys = aDecoder.decodeObjectForKey("allKeys") as! [String]
+        self.currentPin = aDecoder.decodeObjectForKey("currentPin") as? BuildingMapData
+        self.plotBuilding = aDecoder.decodeObjectForKey("plotPlaces") as! [BuildingMapData]
+        self.removeBuilding = aDecoder.decodeObjectForKey("removeBuilding") as! [BuildingMapData]
+        self.favoriteBuilding = aDecoder.decodeObjectForKey("favoriteBuildings") as! [String:[Building]]
+        self.favoriteKeys = aDecoder.decodeObjectForKey("favoriteKeys") as! [String]
+        self.MapViewOption = aDecoder.decodeObjectForKey("MapViewOption") as? Int
+    }
+    
+    func saveArchive() {
+        let data = NSKeyedArchiver.archivedDataWithRootObject(CampusModel.sharedInstance)
+        NSUserDefaults.standardUserDefaults().setObject(data, forKey: archivePath)
     }
     
     // Functions
@@ -90,6 +236,10 @@ class buildingModel{
     
     func allSectionTitles() -> [String]{
         return allKeys
+    }
+    
+    func numberOfBuildings() -> Int {
+        return buildingData.count
     }
     
     func numberOfSections() -> Int {
@@ -105,30 +255,46 @@ class buildingModel{
     }
     
     func buildingNameAtPath(indexPath: NSIndexPath) -> String{
-        let building = buildingAtPath(indexPath)
-            return building.buildingName!
+        return buildingAtPath(indexPath).buildingName!
     }
     
-    func getIndexPath(name: String) -> NSIndexPath{
-        let firstLetter = name.firstLetter()!
-        var section: Int?
-        var row: Int?
-        let indexPath: NSIndexPath
-        for i in 0...(allKeys.count-1) {
-            if firstLetter == allKeys[i]{
-                section = i
-            }
-        }
-        for j in 0...(numberOfBuildingsForSection(section!)-1){
-            if name == buildingDictionary[firstLetter]![j].buildingName{
-                row = j
-            }
-        }
-        indexPath = NSIndexPath(forRow: row!, inSection: section!)
-        return indexPath
+    func favoriteBuildingAtPath(indexPath: NSIndexPath) -> Building {
+        let index = indexPath.section
+        let buildingIndex = favoriteKeys[index]
+        return (favoriteBuilding[buildingIndex]![indexPath.row])
+    }
+    
+    func keyIndex (key: String) -> Int {
+        return allKeys.indexOf(key)!
+    }
+    
+    func changeFavorite(indexPath: NSIndexPath){
+        let letter = allKeys[indexPath.section]
+        let favoriteState = !(buildingDictionary[letter])![indexPath.row].isFavorite
+        (buildingDictionary[letter]!)[indexPath.row].isFavorite = favoriteState
     }
     
     func placesToPlot() -> [Building]{
         return buildingData
     }
+    
+    
+    /*func getIndexPath(name: String) -> NSIndexPath{
+     let firstLetter = name.firstLetter()!
+     var section: Int?
+     var row: Int?
+     let indexPath: NSIndexPath
+     for i in 0...(allKeys.count-1) {
+     if firstLetter == allKeys[i]{
+     section = i
+     }
+     }
+     for j in 0...(numberOfBuildingsForSection(section!)-1){
+     if name == buildingDictionary[firstLetter]![j].buildingName{
+     row = j
+     }
+     }
+     indexPath = NSIndexPath(forRow: row!, inSection: section!)
+     return indexPath
+     }*/
 }

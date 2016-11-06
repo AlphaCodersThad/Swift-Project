@@ -11,60 +11,95 @@ import MapKit
 import CoreLocation
 import Foundation
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, BuildingDetailDataSource{
+class MapViewController: UIViewController, CampusModelInformation, SearchCampusBuildings, DirectionTableDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var navigationText: UITextView!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
-    let buildingMutableData = buildingModel.sharedInstance
+    let buildingMutableData = CampusModel.sharedInstance
     let locationManager = CLLocationManager()
     
+    var stepByStepDirections : [MKRouteStep]?
+    var directionCount : Int = 0
     
-    // This coordinate is taken from Old Main, which is pretty much center of Penn State
-    let startPoint = CLLocationCoordinate2D(latitude: 40.7965, longitude: -77.8627)
-    let startingSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    let calloutImageSize = CGSize(width: 40, height: 40)
-    var currentIndex: NSIndexPath?
+    var response : MKDirectionsResponse?
+    var sourceBuilding : BuildingMapData?
+    var destinationBuilding : BuildingMapData?
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    let centerOfCampus = CLLocation(
+        latitude: CLLocationDegrees("40.7981184")!,
+        longitude: CLLocationDegrees("-77.8610388")!
+    )
     
-    // BuildingDetailDataSource variables
-    var currentBuilding: Building {
-        get { return buildingMutableData.currentPin! }
-    }
-    
-    var indexPath: NSIndexPath {
-        get{ return currentIndex!}
+    var directions : [MKRouteStep]? {
+        get {
+            return stepByStepDirections
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureMapView()
+        navigationText.hidden = true
+        nextButton.hidden = true
+        previousButton.hidden = true
+        moreButton.hidden = true
+        navigationText.editable = false
+        cancelButton.hidden = true
+        centerMapOnLocation(centerOfCampus)
         
-        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.pinDrop(_:)))
-        mapView.addGestureRecognizer(recognizer)
-        configureLocationManager()
+        mapView.delegate = self
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        navigationText.textAlignment = NSTextAlignment.Center
+        setMapType()
+        self.navigationItem.rightBarButtonItem = MKUserTrackingBarButtonItem(mapView: mapView)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+        mapView.addAnnotations(buildingMutableData.plotBuilding)
+        if let _ = buildingMutableData.currentPin {
+            let location = CLLocation(latitude: (buildingMutableData.currentPin?.coordinate.latitude)!,
+                                      longitude: (buildingMutableData.currentPin?.coordinate.longitude)!
+            )
+            centerMapOnLocation(location)
+            mapView.addAnnotation(buildingMutableData.currentPin!)
+        }
+        
+        if let _ = sourceBuilding {
+            campusWalkBuildingInfoViewControllerDismissed(response, sourceBuilding: sourceBuilding!, destinationBuilding: destinationBuilding!)
+        }
+        setMapType()
     }
     
     override func viewDidAppear(animated: Bool) {
-        if CLLocationManager.locationServicesEnabled(){
-            if CLLocationManager.authorizationStatus() == .NotDetermined{
+        super.viewDidAppear(animated)
+        if CLLocationManager.locationServicesEnabled()  {
+            if CLLocationManager.authorizationStatus() == .NotDetermined {
                 locationManager.requestWhenInUseAuthorization()
             }
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        //mapView.addAnnotations(buildingMutableData.placesToPlot())
-        if let _ = buildingMutableData.currentPin {
-            let _lat = CLLocationDegrees(buildingMutableData.currentPin!.coordinate.latitude)
-            let _long = CLLocationDegrees(buildingMutableData.currentPin!.coordinate.longitude)
-            let centerLocation = CLLocation(latitude: _lat, longitude: _long)
-            mapView.addAnnotation(buildingMutableData.currentPin!)
-            centerMapOnLocation(centerLocation)
+    func setMapType(){
+        switch buildingMutableData.MapViewOption! {
+        case 0:
+            mapView.mapType = MKMapType.Standard
+            
+        case 1:
+            mapView.mapType = MKMapType.Satellite
+            
+        case 2:
+            mapView.mapType = MKMapType.Hybrid
+            
+        default:
+            break
         }
     }
     
@@ -73,70 +108,119 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.regionThatFits(coordinateRegion)
     }
-
+    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
-            mapView.showsUserLocation = true
+            self.mapView.showsUserLocation = true
             locationManager.startUpdatingLocation()
         } else {
-            mapView.showsUserLocation = false
+            self.mapView.showsUserLocation = false
             locationManager.stopUpdatingLocation()
+            
         }
     }
     
-    func configureLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func pinDrop(recognizer: UILongPressGestureRecognizer) {
-        if recognizer.state == .Began {
-            let location = recognizer.locationInView(mapView)
-            let coordinate = mapView.convertPoint(location, toCoordinateFromView: mapView)
-            let pinAnnotation = MKPointAnnotation()
-            pinAnnotation.coordinate = coordinate
-            //pinAnnotation.title = "Coordinate"
-            pinAnnotation.subtitle = "Lat: \(coordinate.latitude), Long: \(coordinate.longitude)"
+    @IBAction func directionArrows(sender: UIButton) {
+        if sender.tag == 0 {
+            directionCount += 1
+            previousButton.hidden = false
+            previousButton.enabled = true
+            navigationText.text = stepByStepDirections![directionCount].instructions
             
+            if directionCount+1 == stepByStepDirections?.count {
+                nextButton.hidden = true
+            }
+        } else if sender.tag == 1 {
+            directionCount -= 1
+            nextButton.hidden = false
+            navigationText.text = stepByStepDirections![directionCount].instructions
             
-            let loc = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            
-            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) -> Void in
-                if error != nil {
-                    
-                } else {
-                    if let aPlacemark = placemarks!.first {
-                        pinAnnotation.title = aPlacemark.name
-                        self.mapView.addAnnotation(pinAnnotation)
-                    }
-                }
-            })
+            if directionCount-1 < 0 {
+                previousButton.hidden = true
+            }
         }
+        
     }
     
-    func configureMapView() {
-        mapView.region = MKCoordinateRegion(center: startPoint, span: startingSpan)
-        //mapView.addAnnotations(building.placesToPlot())
-        mapView.delegate = self
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        previousButton.hidden = true
+        nextButton.hidden = true
+        navigationText.hidden = true
+        sender.hidden = true
+        moreButton.hidden = true
+        
+        previousButton.enabled = false
+        nextButton.enabled = false
+        sender.enabled = false
+        moreButton.enabled = false
+        
+        mapView.removeOverlays(mapView.overlays)
     }
     
-    // Used to create annotation whenever it is needed on the Mao View
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        if overlay is MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+            polylineRenderer.strokeColor = UIColor.blackColor()
+            polylineRenderer.lineWidth = 4.0
+            
+            return polylineRenderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
+    }
+    
+    func campusWalkBuildingInfoViewControllerDismissed(response: MKDirectionsResponse?, sourceBuilding: BuildingMapData, destinationBuilding: BuildingMapData){
+        tabBarController?.selectedIndex = 0
+        moreButton.hidden = false
+        moreButton.enabled = true
+        cancelButton.hidden = false
+        cancelButton.enabled = true
+        navigationText.hidden = false
+        moreButton.hidden = false
+        for route in (response?.routes)! {
+            self.mapView.addOverlay(route.polyline)
+            
+            stepByStepDirections = route.steps
+            
+            directionCount = 0
+            navigationText.text = stepByStepDirections![directionCount].instructions
+            
+            previousButton.hidden = true
+            nextButton.hidden = false
+            nextButton.enabled = true
+            if directionCount+1 == stepByStepDirections?.count {
+                nextButton.hidden = true
+            }
+        }
+        
+        let region = MKCoordinateRegionMakeWithDistance((response?.source.placemark.location?.coordinate)!, 2000, 2000)
+        mapView.setRegion(region, animated: false)
+        mapView.selectAnnotation(sourceBuilding, animated: false)
+        
+        dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("annotationInfoViewController") as! AnnotationController
+        detailViewController.dataSource = self
+        detailViewController.tappedBuilding = view.annotation as? BuildingMapData
+        self.presentViewController(detailViewController, animated: false, completion: nil)
+    }
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
-        
-        if let annotation = annotation as? Building {
-            let identifier = "BuildingPin"
+        if let annotation = annotation as? BuildingMapData {
+            let identifier = "pin"
             var view: MKAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                let pinView =  MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 pinView.canShowCallout = true
                 pinView.calloutOffset = CGPoint(x: -5, y: 5)
-                pinView.pinTintColor = (buildingMutableData.currentPin?.title == annotation.title) ? UIColor.redColor() : UIColor.blueColor()
+                pinView.pinTintColor = (buildingMutableData.currentPin?.title == annotation.title ) ? UIColor.redColor() : UIColor.blueColor()
                 pinView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
                 return pinView
             }
@@ -145,33 +229,27 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         return nil
     }
     
-    
-    // Sort of useless right now.. I wanted to connect to detailViewController, but the way the protocol is set up is a pain...
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        self.performSegueWithIdentifier("DetailSegue", sender: self)
+    func buildingSearchViewControllerDismissed(buildingClicked: BuildingMapData) {
+        mapView.selectAnnotation(buildingClicked, animated: true)
+        
+        mapView.removeOverlays(mapView.overlays)
+        
+        centerMapOnLocation(CLLocation(latitude: buildingClicked.coordinate.latitude, longitude: buildingClicked.coordinate.longitude))
+        
+        dismissViewControllerAnimated(false, completion: nil)
+        
     }
-    
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        // Getting index here..
-        let _buildingName = self.mapView.selectedAnnotations.first!.title!
-        let path: NSIndexPath? = buildingMutableData.getIndexPath(_buildingName!)
-        buildingMutableData.currentPin = buildingMutableData.buildingAtPath(path!)
-        self.currentIndex = path!
-    }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-        case "DetailSegue":
-            if let detailViewController = segue.destinationViewController as? DetailViewController {
-                //let annotation = mapView.selectedAnnotations.first! as! buildingModel.Building
-                detailViewController.dataSource? = self
-            }
-        default:
+        case "directionSegue" :
+            let directionsViewController = segue.destinationViewController as! DirectionTableViewController
+            directionsViewController.dataSource = self
+            break
+            
+        default :
             assert(false, "Unhandled Segue")
         }
     }
-    ///////////////////////////////////////////////////////////
-
+    
 }
-

@@ -12,7 +12,7 @@ import MapKit
 
 class BuildingsTableViewController: UITableViewController, BuildingDetailDataSource {
     
-    let buildingMutableData = buildingModel.sharedInstance
+    let buildingMutableData = CampusModel.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
