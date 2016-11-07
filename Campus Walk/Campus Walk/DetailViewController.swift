@@ -42,9 +42,8 @@ class DetailViewController: UIViewController, GetDirectionsProtocol, UIImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("imageTapped"))
         let buttonTitle = (dataSource?.currentBuilding.isFavorite)! ? "Remove From Favorites" : "Add To Favorites"
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.imageTapped(_:)))
         favoriteButton.setTitle(buttonTitle, forState: UIControlState.Normal)
         navigationItem.title = dataSource?.currentBuilding.buildingName
         buildingImage.userInteractionEnabled = true
@@ -68,7 +67,7 @@ class DetailViewController: UIViewController, GetDirectionsProtocol, UIImagePick
         buildingYearLabel.text = (dataSource?.currentBuilding.buildingYear)! == 0 ? "Year Built: " : "Year Built: " + String((dataSource?.currentBuilding.buildingYear)!)
     }
     
-    func imageTapped(img : AnyObject ) {
+    func imageTapped (img : AnyObject ) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
