@@ -10,7 +10,7 @@
         <scene sceneID="u0u-CZ-rAW">
             <objects>
                 <navigationController id="N5v-i7-sl4" userLabel="Map" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="ic_my_location_black_24px.png" id="kYF-aW-VnR"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Tab.png" id="kYF-aW-VnR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6R0-11-pt8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -63,7 +63,7 @@
                             <outlet property="delegate" destination="nsA-qK-hjp" id="afa-ot-Q3f"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Jdp-hw-nCm"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Jdp-hw-nCm"/>
                     <navigationItem key="navigationItem" title="Favorite View Controller" id="pSU-dg-ge1"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -224,7 +224,7 @@
                             <constraint firstItem="Mqs-dD-cXf" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="xfc-5N-1uN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="vph-b5-u5v"/>
+                    <tabBarItem key="tabBarItem" image="Tab.png" id="vph-b5-u5v"/>
                     <navigationItem key="navigationItem" id="Zb5-Sb-fGZ">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Poa-tE-AMF">
@@ -391,7 +391,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IA1-ky-sjr">
-                                <rect key="frame" x="129" y="105" width="343" height="128"/>
+                                <rect key="frame" x="180" y="105" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="TKO-Kr-kKg"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -399,9 +402,7 @@
                             <constraint firstItem="oqe-EZ-Qdm" firstAttribute="leading" secondItem="NOk-NQ-Cfc" secondAttribute="leading" id="0zs-wR-QgQ"/>
                             <constraint firstItem="oqe-EZ-Qdm" firstAttribute="trailing" secondItem="NOk-NQ-Cfc" secondAttribute="trailing" id="4w1-gj-EEq"/>
                             <constraint firstItem="oqe-EZ-Qdm" firstAttribute="bottom" secondItem="HlC-xg-Mrl" secondAttribute="top" constant="-131" id="Bme-W6-0WZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IA1-ky-sjr" secondAttribute="trailing" constant="108" id="Df4-QO-4b3"/>
                             <constraint firstItem="RLA-Ny-A1e" firstAttribute="leading" secondItem="NOk-NQ-Cfc" secondAttribute="leading" id="PxO-cy-kWP"/>
-                            <constraint firstItem="IA1-ky-sjr" firstAttribute="leading" secondItem="NOk-NQ-Cfc" secondAttribute="leadingMargin" constant="109" id="XBm-ov-bIV"/>
                             <constraint firstItem="IA1-ky-sjr" firstAttribute="centerX" secondItem="NOk-NQ-Cfc" secondAttribute="centerX" id="Zb1-to-wj4"/>
                             <constraint firstItem="IA1-ky-sjr" firstAttribute="top" secondItem="85z-qy-QLa" secondAttribute="bottom" constant="41" id="aCb-nZ-HfA"/>
                             <constraint firstItem="DFa-Af-dpy" firstAttribute="trailing" secondItem="NOk-NQ-Cfc" secondAttribute="trailing" id="bD9-gx-mgV"/>
@@ -629,11 +630,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Settings.png" width="32" height="32"/>
-        <image name="ic_my_location_black_24px.png" width="512" height="512"/>
+        <image name="Settings.png" width="30" height="30"/>
+        <image name="Tab.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aPN-jM-XpH"/>
+        <segue reference="qrP-gE-uuR"/>
         <segue reference="7Cb-LC-SEp"/>
     </inferredMetricsTieBreakers>
 </document>
