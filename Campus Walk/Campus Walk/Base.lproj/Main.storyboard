@@ -385,7 +385,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-EZ-Qdm">
                                 <rect key="frame" x="0.0" y="390" width="600" height="30"/>
-                                <state key="normal" title="pinButton"/>
+                                <state key="normal" title="Pin Building"/>
                                 <connections>
                                     <action selector="pinToMapButton:" destination="4z6-St-nur" eventType="touchUpInside" id="bTq-gw-a7Z"/>
                                 </connections>
@@ -634,6 +634,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aPN-jM-XpH"/>
-        <segue reference="P34-Ax-9Fa"/>
+        <segue reference="7Cb-LC-SEp"/>
     </inferredMetricsTieBreakers>
 </document>
