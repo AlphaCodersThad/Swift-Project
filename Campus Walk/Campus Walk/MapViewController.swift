@@ -120,7 +120,7 @@ class MapViewController: UIViewController, CampusModelInformation, SearchCampusB
         }
     }
     
-    @IBAction func directionArrows(sender: UIButton) {
+    @IBAction func stepByStep(sender: UIButton) {
         if sender.tag == 0 {
             directionCount += 1
             previousButton.hidden = false

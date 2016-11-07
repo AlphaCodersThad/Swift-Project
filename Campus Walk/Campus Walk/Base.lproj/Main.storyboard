@@ -186,6 +186,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkG-ik-1Ec">
                                 <rect key="frame" x="51" y="134" width="59" height="30"/>
                                 <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="stepByStep:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YnV-8Z-gux"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xIl-z7-NNF" userLabel="Navigation Text">
                                 <rect key="frame" x="51" y="78" width="498" height="40"/>
@@ -201,6 +204,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdV-uj-IST">
                                 <rect key="frame" x="517" y="134" width="32" height="30"/>
                                 <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="directionArrows:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hxc-Ld-I1a"/>
+                                    <action selector="stepByStep:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ftv-JM-PGS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
