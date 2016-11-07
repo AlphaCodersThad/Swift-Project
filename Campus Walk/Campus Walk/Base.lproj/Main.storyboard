@@ -598,19 +598,14 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-Rh-iWF">
                                             <rect key="frame" x="279" y="11" width="42" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="42" id="gO6-JU-jtX"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qcO-Rh-iWF" secondAttribute="trailing" constant="271" id="YCf-gG-4G3"/>
-                                        <constraint firstItem="qcO-Rh-iWF" firstAttribute="centerX" secondItem="JUq-2u-7KJ" secondAttribute="centerX" id="d5Q-J3-pmy"/>
-                                        <constraint firstItem="qcO-Rh-iWF" firstAttribute="top" secondItem="JUq-2u-7KJ" secondAttribute="topMargin" constant="3" id="tyV-5H-NcM"/>
-                                        <constraint firstItem="qcO-Rh-iWF" firstAttribute="leading" secondItem="JUq-2u-7KJ" secondAttribute="leadingMargin" constant="271" id="wlG-i8-YWC"/>
+                                        <constraint firstItem="qcO-Rh-iWF" firstAttribute="centerX" secondItem="JUq-2u-7KJ" secondAttribute="centerX" id="2Mu-TU-cQm"/>
+                                        <constraint firstItem="qcO-Rh-iWF" firstAttribute="centerY" secondItem="JUq-2u-7KJ" secondAttribute="centerY" id="gEs-rB-qlQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -634,7 +629,7 @@
         <image name="Tab.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qrP-gE-uuR"/>
+        <segue reference="aPN-jM-XpH"/>
         <segue reference="7Cb-LC-SEp"/>
     </inferredMetricsTieBreakers>
 </document>
