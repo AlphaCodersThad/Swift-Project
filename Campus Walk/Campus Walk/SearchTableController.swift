@@ -14,7 +14,7 @@ protocol SearchCampusBuildings : class {
     func buildingSearchViewControllerDismissed(buildingClicked: BuildingMapData)
 }
 
-class SearchTableViewController: UITableViewController {
+class SearchTableController: UITableViewController {
     
     var campusModel = CampusModel.sharedInstance
     weak var dataSource : SearchCampusBuildings?
@@ -40,7 +40,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SearchTableViewCell", forIndexPath: indexPath) as! SearchCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SearchCell", forIndexPath: indexPath) as! SearchCell
         cell.buildingName.text = campusModel.buildingNameAtPath(indexPath)
         return cell
     }

@@ -25,12 +25,7 @@ class FavoriteViewController: UITableViewController , BuildingDetailDataSource{
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
     }
-    
-    /*override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCampusWalkBuildingCell", forIndexPath: indexPath) as! FavoriteCampusWalkBuildingCell
-     cell.buildingName.text = campusWalkData.favoriteBuildings[indexPath.row].name
-     return cell
-     }*/
+
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         buildingMutableData.favoriteKeys = Array(buildingMutableData.favoriteBuilding.keys).sort()
@@ -59,18 +54,7 @@ class FavoriteViewController: UITableViewController , BuildingDetailDataSource{
         return cell
     }
     
-    /*
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     switch segue.identifier! {
-     case "InfoSegue":
-     let detailViewController = segue.destinationViewController as! InfoViewController
-     detailViewController.dataSource = self
-     detailViewController.completionBlock = { () in self.dismissViewControllerAnimated(true, completion: nil)}
-     break
-     default:
-     assert(false, "Unhandled Segue")
-     }
-     }*/
+
     
     var currentBuilding : Building {
         get {
@@ -86,7 +70,7 @@ class FavoriteViewController: UITableViewController , BuildingDetailDataSource{
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segue.identifier! {
-        case "FavInfoSegue":
+        case "FavoriteToDetails":
             let svc = self.tabBarController?.viewControllers![0].childViewControllers[0] as! MapViewController
             let detailViewController = segue.destinationViewController as! DetailViewController
             detailViewController.dataSource = self

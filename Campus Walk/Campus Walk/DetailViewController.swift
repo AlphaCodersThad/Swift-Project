@@ -43,7 +43,7 @@ class DetailViewController: UIViewController, GetDirectionsProtocol, UIImagePick
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("ImageTapped"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("imageTapped"))
         let buttonTitle = (dataSource?.currentBuilding.isFavorite)! ? "Remove From Favorites" : "Add To Favorites"
         favoriteButton.setTitle(buttonTitle, forState: UIControlState.Normal)
         navigationItem.title = dataSource?.currentBuilding.buildingName
@@ -51,33 +51,7 @@ class DetailViewController: UIViewController, GetDirectionsProtocol, UIImagePick
         buildingImage.addGestureRecognizer(tapGesture)
         imagePicker.delegate = self
         
-        /*
-        _name = (dataSource?.currentBuilding.buildingName)!
-        _opp_bldg_code = String((dataSource?.currentBuilding.buildingOpp)!)
-        _year_constructed = String((dataSource?.currentBuilding.buildingYear)!)
-        _coordinate = " Latitude: \(dataSource?.currentBuilding.coordinate.latitude), Longitude: \(dataSource?.currentBuilding.coordinate.longitude)"
-        _photoFile = (dataSource?.currentBuilding.photoFile)!
-        _isFavorite = (dataSource?.currentBuilding.isFavorite)!
-        
-        
-        // Display building name
-        buildingNameLabel.text = _name
-        
-        // Display year constructed
-        switch _year_constructed{
-        case "0":
-            buildingYearLabel.text = "Year Constructed: Unknown"
-        default:
-            buildingYearLabel.text = "Year Constructed: " + _year_constructed
-        }
-        if !_isFavorite! {
-            favoriteButton.setTitle("Add to Favorites", forState: UIControlState.Normal)
-        }
-        
-        if !_photoFile.isEmpty {
-            buildingImage.image = UIImage(named: (_photoFile + ".jpg"))
-            buildingImage.contentMode = UIViewContentMode.ScaleAspectFit
-        }*/
+
     }
     override func viewWillLayoutSubviews() {
         reloadInputViews()
@@ -94,7 +68,7 @@ class DetailViewController: UIViewController, GetDirectionsProtocol, UIImagePick
         buildingYearLabel.text = (dataSource?.currentBuilding.buildingYear)! == 0 ? "Year Built: " : "Year Built: " + String((dataSource?.currentBuilding.buildingYear)!)
     }
     
-    func imageTapped (img : AnyObject ) {
+    func imageTapped(img : AnyObject ) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
@@ -147,6 +121,7 @@ class DetailViewController: UIViewController, GetDirectionsProtocol, UIImagePick
             }
         }
     }
+    
     func addToFavorites(){
         let name = (dataSource?.currentBuilding.buildingName)!
         buildingMutableData.changeFavorite((dataSource?.indexPath)!)

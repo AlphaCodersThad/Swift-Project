@@ -15,7 +15,7 @@
 		253BE71E1DCEB70C00511BD0 /* DirectionsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253BE71D1DCEB70C00511BD0 /* DirectionsViewCell.swift */; };
 		253BE7201DCEB96B00511BD0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253BE71F1DCEB96B00511BD0 /* SettingsViewController.swift */; };
 		253BE7221DCEBD7B00511BD0 /* FavoriteBuildingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253BE7211DCEBD7B00511BD0 /* FavoriteBuildingCell.swift */; };
-		253BE72E1DCEC44400511BD0 /* Settings-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 253BE7281DCEC44400511BD0 /* Settings-32.png */; };
+		253BE72E1DCEC44400511BD0 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 253BE7281DCEC44400511BD0 /* Settings.png */; };
 		253BE7301DCEC50A00511BD0 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253BE72F1DCEC50A00511BD0 /* FavoriteViewController.swift */; };
 		257432851DBB418A00A88EDB /* agadmin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 257432651DBB418A00A88EDB /* agadmin.jpg */; };
 		257432861DBB418A00A88EDB /* ageng.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 257432661DBB418A00A88EDB /* ageng.jpg */; };
@@ -82,7 +82,7 @@
 		253BE71D1DCEB70C00511BD0 /* DirectionsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsViewCell.swift; sourceTree = "<group>"; };
 		253BE71F1DCEB96B00511BD0 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		253BE7211DCEBD7B00511BD0 /* FavoriteBuildingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBuildingCell.swift; sourceTree = "<group>"; };
-		253BE7281DCEC44400511BD0 /* Settings-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-32.png"; sourceTree = "<group>"; };
+		253BE7281DCEC44400511BD0 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		253BE72F1DCEC50A00511BD0 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		257432651DBB418A00A88EDB /* agadmin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = agadmin.jpg; sourceTree = "<group>"; };
 		257432661DBB418A00A88EDB /* ageng.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ageng.jpg; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		257432631DBB418A00A88EDB /* Assignment 8 Assets */ = {
 			isa = PBXGroup;
 			children = (
-				253BE7281DCEC44400511BD0 /* Settings-32.png */,
+				253BE7281DCEC44400511BD0 /* Settings.png */,
 				257432641DBB418A00A88EDB /* buildings */,
 				257432841DBB418A00A88EDB /* buildings.plist */,
 			);
@@ -390,7 +390,7 @@
 				2574328C1DBB418A00A88EDB /* biomechanics.jpg in Resources */,
 				25777F521DB7FBA900BFF5BC /* Main.storyboard in Resources */,
 				2574329F1DBB418A00A88EDB /* eewest.jpg in Resources */,
-				253BE72E1DCEC44400511BD0 /* Settings-32.png in Resources */,
+				253BE72E1DCEC44400511BD0 /* Settings.png in Resources */,
 				257432951DBB418A00A88EDB /* carpenter.jpg in Resources */,
 				257432941DBB418A00A88EDB /* carnegie.jpg in Resources */,
 				2574329D1DBB418A00A88EDB /* earthengineeringsciences.jpg in Resources */,

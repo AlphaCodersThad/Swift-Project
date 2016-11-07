@@ -200,7 +200,7 @@ class MapViewController: UIViewController, CampusModelInformation, SearchCampusB
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("annotationInfoViewController") as! AnnotationController
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("annotationController") as! AnnotationController
         detailViewController.dataSource = self
         detailViewController.tappedBuilding = view.annotation as? BuildingMapData
         self.presentViewController(detailViewController, animated: false, completion: nil)

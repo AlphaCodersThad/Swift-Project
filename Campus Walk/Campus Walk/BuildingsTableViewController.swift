@@ -54,6 +54,9 @@ class BuildingsTableViewController: UITableViewController, BuildingDetailDataSou
         case "DetailSegue":
             if let detailViewController = segue.destinationViewController as? DetailViewController {
                 detailViewController.dataSource = self
+                detailViewController.campusModelSource = self.tabBarController?.viewControllers![0].childViewControllers[0] as! MapViewController
+                detailViewController.completionBlock = { () in self.dismissViewControllerAnimated(true, completion: nil)}
+                break
             }
         default:
             assert(false, "Unhandled Segue")

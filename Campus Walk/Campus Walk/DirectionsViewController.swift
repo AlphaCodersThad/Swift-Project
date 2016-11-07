@@ -42,7 +42,7 @@ class DirectionsViewController: UIViewController , SearchCampusBuildings{
     
     @IBAction func selectSourceAndDestination(sender: UIButton) {
         lastClickedTextField = sender
-        let bldgSearchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchTableViewController") as! SearchTableViewController
+        let bldgSearchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchTable") as! SearchTableController
         bldgSearchViewController.campusModel = campusModel
         bldgSearchViewController.dataSource = self
         self.presentViewController(bldgSearchViewController, animated: false, completion: nil)
