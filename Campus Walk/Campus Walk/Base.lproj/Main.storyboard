@@ -27,13 +27,13 @@
         <scene sceneID="PBV-S5-aat">
             <objects>
                 <tableViewController id="nsA-qK-hjp" userLabel="Favorite View Controller" customClass="FavoriteViewController" customModule="Campus_Walk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Syk-nB-chH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Syk-nB-chH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteBuildingCell" id="mZl-1G-fyi" customClass="FavoriteBuildingCell" customModule="Campus_Walk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mZl-1G-fyi" id="8zm-7Y-VsM">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -64,7 +64,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Jdp-hw-nCm"/>
-                    <navigationItem key="navigationItem" title="Favorite View Controller" id="pSU-dg-ge1"/>
+                    <navigationItem key="navigationItem" title="Favorite Buildings" id="pSU-dg-ge1"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzQ-Xu-H76" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,13 +263,13 @@
         <scene sceneID="Hyg-TT-3kP">
             <objects>
                 <tableViewController id="yZW-c1-SCq" customClass="DirectionTableViewController" customModule="Campus_Walk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CzH-yN-HXs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="CzH-yN-HXs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectionsViewCell" id="e8d-yn-Ibs" customClass="DirectionsViewCell" customModule="Campus_Walk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e8d-yn-Ibs" id="Zij-mv-nyC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -306,7 +306,7 @@
             </objects>
             <point key="canvasLocation" x="2870" y="97"/>
         </scene>
-        <!--Buildings Table View Controller-->
+        <!--All Buildings-->
         <scene sceneID="y2c-mJ-NZG">
             <objects>
                 <tableViewController id="VbM-2E-arz" customClass="BuildingsTableViewController" customModule="Campus_Walk" customModuleProvider="target" sceneMemberID="viewController">
@@ -346,7 +346,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="search" id="BIS-pf-iwz"/>
-                    <navigationItem key="navigationItem" id="gWI-y8-ExY"/>
+                    <navigationItem key="navigationItem" title="All Buildings" id="gWI-y8-ExY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dy-Fd-kUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -584,13 +584,13 @@
         <scene sceneID="1mG-8u-GU2">
             <objects>
                 <tableViewController storyboardIdentifier="SearchTable" id="ZVS-GV-Lqt" customClass="SearchTableController" customModule="Campus_Walk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BSZ-IF-zN0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="BSZ-IF-zN0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="wT5-Fn-P0W" customClass="SearchCell" customModule="Campus_Walk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="SearchCell" id="wT5-Fn-P0W" customClass="SearchCell" customModule="Campus_Walk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wT5-Fn-P0W" id="JUq-2u-7KJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -629,7 +629,7 @@
         <image name="Tab.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aPN-jM-XpH"/>
+        <segue reference="qrP-gE-uuR"/>
         <segue reference="7Cb-LC-SEp"/>
     </inferredMetricsTieBreakers>
 </document>
