@@ -12,18 +12,18 @@ import UIKit
 class TableViewController: UITableViewController{
     
     let nationalParkData = NationalParksModel.sharedInstance
-    var sectionCollapsed = [Bool](count: NationalParksModel.sharedInstance.totalColumns, repeatedValue: false)
+    var sectionCollapsed = [Bool](repeating: false, count: NationalParksModel.sharedInstance.totalColumns)
     //var scrollView : UIScrollView?
     let headerHeight : CGFloat = 60.0
     let zoomThreshold : CGFloat = 1.1
     //var isSelected = false
     var oldWidth : CGFloat?
-    var currentImageSelectedIndex : NSIndexPath?
+    var currentImageSelectedIndex : IndexPath?
     let heightOfLabel : CGFloat = 45
     let textSize : CGFloat = 30
     
     override func viewDidLoad() {
-        currentImageSelectedIndex = NSIndexPath(forRow: 0, inSection: 0)
+        currentImageSelectedIndex = IndexPath(row: 0, section: 0)
 
     }
     
@@ -34,16 +34,16 @@ class TableViewController: UITableViewController{
         }
     }*/
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return nationalParkData.totalColumns
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (!sectionCollapsed[section]) ? nationalParkData.numberOfRows(section) : 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Table Cell", forIndexPath: indexPath) as! TableCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Table Cell", for: indexPath) as! TableCell
         cell.sceneryLabel!.text = nationalParkData.sceneryCaption(indexPath.section, y: indexPath.row)
         let image = UIImage(named: nationalParkData.imagePath(indexPath.section, y: indexPath.row))
         cell.sceneryImage!.image = image
@@ -51,7 +51,7 @@ class TableViewController: UITableViewController{
     }
     
     // Setting the title here
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let GrandTeton = "GrandTeton"
         let BryceCanyon = "BryceCanyon"
         
@@ -67,7 +67,7 @@ class TableViewController: UITableViewController{
     }
     
     // Setting the height for the header section in UITableView
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerHeight;
     }
     
@@ -125,47 +125,47 @@ class TableViewController: UITableViewController{
     }*/
     
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: headerHeight))
-        headerView.autoresizingMask = [.FlexibleWidth , .FlexibleHeight , .FlexibleLeftMargin , .FlexibleRightMargin , .FlexibleTopMargin , .FlexibleBottomMargin]
+        headerView.autoresizingMask = [.flexibleWidth , .flexibleHeight , .flexibleLeftMargin , .flexibleRightMargin , .flexibleTopMargin , .flexibleBottomMargin]
         let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: headerHeight))
         headerView.tag = section
-        headerView.backgroundColor = UIColor.whiteColor()
+        headerView.backgroundColor = UIColor.white
         // headerLabel.layer.borderColor = UIColor.orangeColor().CGColor
         headerLabel.text = nationalParkData.getParkTitle(section)
-        headerLabel.textAlignment = .Center                                             // Changed From Left
+        headerLabel.textAlignment = .center                                             // Changed From Left
         headerView.addSubview(headerLabel)
         let headerTapped = UITapGestureRecognizer(target: self, action: #selector(TableViewController.sectionHeaderTapped(_:)))
         headerView.addGestureRecognizer(headerTapped)
         return headerView
     }
     
-    func sectionHeaderTapped (gestureRecognizer : UITapGestureRecognizer){
-        let indexPath = NSIndexPath(forRow: 0, inSection: (gestureRecognizer.view?.tag)!)
+    func sectionHeaderTapped (_ gestureRecognizer : UITapGestureRecognizer){
+        let indexPath = IndexPath(row: 0, section: (gestureRecognizer.view?.tag)!)
         if indexPath.row == 0 {
             sectionCollapsed[indexPath.section] = !sectionCollapsed[indexPath.section]
-            self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Right)   // Row animation changed from .Fade
+            self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .right)   // Row animation changed from .Fade
         }
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "getImageDetail" {
-            let control = segue.destinationViewController as! DetailViewController
+            let control = segue.destination as! DetailViewController
             let indexPath = tableView.indexPathForSelectedRow
             let imageName = self.nationalParkData.imagePath(indexPath!.section, y: indexPath!.row)
             let imageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: control.view.frame.width, height: control.view.frame.height))
             imageView.image = UIImage(named: imageName)
-            imageView.contentMode = .ScaleAspectFit
-            imageView.autoresizingMask = [.FlexibleWidth , .FlexibleHeight , .FlexibleLeftMargin , .FlexibleRightMargin , .FlexibleTopMargin , .FlexibleBottomMargin]
+            imageView.contentMode = .scaleAspectFit
+            imageView.autoresizingMask = [.flexibleWidth , .flexibleHeight , .flexibleLeftMargin , .flexibleRightMargin , .flexibleTopMargin , .flexibleBottomMargin]
             let caption = UILabel(frame: CGRect(x: 0.0, y: control.view.frame.height/2, width: control.view.frame.width, height: heightOfLabel))
             caption.text = nationalParkData.sceneryCaption(indexPath!.section, y: indexPath!.row)
-            caption.textColor = UIColor.magentaColor()
+            caption.textColor = UIColor.magenta
             caption.font = UIFont(name: "HelveticaNeue-Bold", size: textSize)
             // caption.backgroundColor = UIColor.lightGrayColor()
-            caption.textAlignment = .Center
+            caption.textAlignment = .center
             
             control.view.addSubview(imageView)
             control.view.addSubview(caption)

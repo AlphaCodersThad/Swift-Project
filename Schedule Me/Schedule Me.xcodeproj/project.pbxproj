@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2523193A1DEDBA4C0036A2C5 /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252319391DEDBA4C0036A2C5 /* AddCalendarViewController.swift */; };
+		254CC82F1DDC1D6200444B6F /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CC82E1DDC1D6200444B6F /* ActivityTableViewController.swift */; };
 		25BD0FA71DC64242009CEF41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BD0FA61DC64242009CEF41 /* AppDelegate.swift */; };
-		25BD0FA91DC64242009CEF41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BD0FA81DC64242009CEF41 /* ViewController.swift */; };
 		25BD0FAC1DC64242009CEF41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25BD0FAA1DC64242009CEF41 /* Main.storyboard */; };
 		25BD0FAE1DC64242009CEF41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25BD0FAD1DC64242009CEF41 /* Assets.xcassets */; };
 		25BD0FB11DC64242009CEF41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25BD0FAF1DC64242009CEF41 /* LaunchScreen.storyboard */; };
 		25BD0FBC1DC64242009CEF41 /* Schedule_MeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BD0FBB1DC64242009CEF41 /* Schedule_MeTests.swift */; };
+		25F173691DD56EF6008257C1 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F173681DD56EF6008257C1 /* ActivityModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		252319391DEDBA4C0036A2C5 /* AddCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
+		254CC82E1DDC1D6200444B6F /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		25BD0FA31DC64242009CEF41 /* Schedule Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Schedule Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25BD0FA61DC64242009CEF41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		25BD0FA81DC64242009CEF41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		25BD0FAB1DC64242009CEF41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25BD0FAD1DC64242009CEF41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25BD0FB01DC64242009CEF41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		25BD0FB71DC64242009CEF41 /* Schedule MeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Schedule MeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25BD0FBB1DC64242009CEF41 /* Schedule_MeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule_MeTests.swift; sourceTree = "<group>"; };
 		25BD0FBD1DC64242009CEF41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25F173681DD56EF6008257C1 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +83,9 @@
 			children = (
 				25BD0FC61DC64270009CEF41 /* Model */,
 				25BD0FA61DC64242009CEF41 /* AppDelegate.swift */,
-				25BD0FA81DC64242009CEF41 /* ViewController.swift */,
+				252319391DEDBA4C0036A2C5 /* AddCalendarViewController.swift */,
+				254CC82E1DDC1D6200444B6F /* ActivityTableViewController.swift */,
+				25F173681DD56EF6008257C1 /* ActivityModel.swift */,
 				25BD0FAA1DC64242009CEF41 /* Main.storyboard */,
 				25BD0FAD1DC64242009CEF41 /* Assets.xcassets */,
 				25BD0FAF1DC64242009CEF41 /* LaunchScreen.storyboard */,
@@ -149,14 +155,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Thadea Achmad";
 				TargetAttributes = {
 					25BD0FA21DC64242009CEF41 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 					};
 					25BD0FB61DC64242009CEF41 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0810;
 						TestTargetID = 25BD0FA21DC64242009CEF41;
 					};
 				};
@@ -205,8 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25BD0FA91DC64242009CEF41 /* ViewController.swift in Sources */,
+				2523193A1DEDBA4C0036A2C5 /* AddCalendarViewController.swift in Sources */,
+				254CC82F1DDC1D6200444B6F /* ActivityTableViewController.swift in Sources */,
 				25BD0FA71DC64242009CEF41 /* AppDelegate.swift in Sources */,
+				25F173691DD56EF6008257C1 /* ActivityModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,8 +272,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -308,8 +320,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -328,6 +342,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -341,6 +356,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cse.psu.taa5170.Schedule-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -352,6 +368,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cse.psu.taa5170.Schedule-Me";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -363,6 +380,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cse.psu.taa5170.Schedule-MeTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schedule Me.app/Schedule Me";
 			};
 			name = Debug;
@@ -375,6 +393,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.cse.psu.taa5170.Schedule-MeTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Schedule Me.app/Schedule Me";
 			};
 			name = Release;
@@ -398,6 +417,7 @@
 				25BD0FC21DC64242009CEF41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25BD0FC31DC64242009CEF41 /* Build configuration list for PBXNativeTarget "Schedule MeTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +426,7 @@
 				25BD0FC51DC64242009CEF41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

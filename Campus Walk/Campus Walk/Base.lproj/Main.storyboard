@@ -107,7 +107,7 @@
             </objects>
             <point key="canvasLocation" x="447" y="1472"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="r9D-33-zgv">
             <objects>
                 <viewController id="JJD-qv-YUf" customClass="SettingsViewController" customModule="Campus_Walk" customModuleProvider="target" sceneMemberID="viewController">
@@ -139,7 +139,7 @@
                             <constraint firstItem="nmR-vR-dSX" firstAttribute="centerX" secondItem="9Ow-7H-41Z" secondAttribute="centerX" id="BH9-Me-NcA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="d1A-Ij-zXG"/>
+                    <navigationItem key="navigationItem" title="Settings" id="d1A-Ij-zXG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kP-x7-qTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

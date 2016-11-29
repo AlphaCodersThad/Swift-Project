@@ -15,19 +15,19 @@ class NationalParksModel{
     static let sharedInstance = NationalParksModel()
 
     // PRIVATE:
-    private var photosDetail = [[ImageDetails]]()
-    private var parkTitles = [String]()
+    fileprivate var photosDetail = [[ImageDetails]]()
+    fileprivate var parkTitles = [String]()
     
     // PUBLIC VAR:
     var currentImage: UIImageView?
     
-    private init(){
-        let path = NSBundle.mainBundle().pathForResource("Photos", ofType: "plist")
+    fileprivate init(){
+        let path = Bundle.main.path(forResource: "Photos", ofType: "plist")
         importData(path)
     }
     
     // Parsing data from property file
-    private func importData(pathToAssetsFile : String?){
+    fileprivate func importData(_ pathToAssetsFile : String?){
         for element in NSArray(contentsOfFile: pathToAssetsFile!)! as [AnyObject]{
             let photos = element as![String:AnyObject]
             
@@ -54,25 +54,25 @@ class NationalParksModel{
         get { return parkTitles.count }
     }
     
-    func numberOfRows(x : Int) -> Int {
+    func numberOfRows(_ x : Int) -> Int {
         return photosDetail[x].count
     }
     
-    func parkName(index : Int) -> String{
+    func parkName(_ index : Int) -> String{
         return parkTitles[index]
     }
     
-    func imagePath(x: Int, y:Int) ->String{
+    func imagePath(_ x: Int, y:Int) ->String{
         return photosDetail[x][y].imageFileName + ".png"
     }
     
-    func sceneryCaption(x: Int, y: Int) -> String{
+    func sceneryCaption(_ x: Int, y: Int) -> String{
         return photosDetail[x][y].caption
     }
     
-    func getParkTitle(x: Int) -> String {
+    func getParkTitle(_ x: Int) -> String {
         let parkTitle = photosDetail[x][0].imageFileName
-        return parkTitle.substringWithRange(Range<String.Index> (parkTitle.startIndex.advancedBy(0) ..< parkTitle.endIndex.advancedBy(-2) ))
+        return parkTitle.substring(with: Range<String.Index> (parkTitle.characters.index(parkTitle.startIndex, offsetBy: 0) ..< parkTitle.characters.index(parkTitle.endIndex, offsetBy: -2) ))
     }
     
 }
