@@ -11,13 +11,14 @@
 //import Dispatch
 import UIKit
 import EventKit
+import SwiftMoment
 
 class ActivityTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CalendarAddedDelegate {
     
     @IBOutlet weak var permissionView: UIView!
     @IBOutlet weak var calendarsTableView: UITableView!
     
-    
+    let now = moment()
     let eventStore = EKEventStore()
     var calendars: [EKCalendar]?
     
@@ -28,12 +29,34 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //super.viewWillAppear(animated)
         checkCalendarAuthorization()
+        // did can also be called as calendarDidAdd()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
+    func loadCalendars() {
+        self.calendars = eventStore.calendars(for: EKEntityType.event).sorted() { (cal1, cal2) -> Bool in
+            return cal1.title < cal2.title
+        }
+
+    }
+    
+    func refreshTableView(){
+        calendarsTableView.isHidden = false
+        calendarsTableView.reloadData()
+    }
+    
+    // MARK: Calendar Added Delegate
+    func calendarDidAdd() {
+        self.loadCalendars()
+        self.refreshTableView()
+    }
+    
     
     // This should be done in viewWillAppear() because user can grant access at first,
     //   but later deny them from settings
@@ -67,14 +90,7 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
         })
     }
     
-    func loadCalendars() {
-        self.calendars = eventStore.calendars(for: EKEntityType.event)
-    }
-    
-    func refreshTableView(){
-        calendarsTableView.isHidden = false
-        calendarsTableView.reloadData()
-    }
+
     
     @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
         let openSettingsUrl = URL(string: UIApplicationOpenSettingsURLString)
@@ -104,6 +120,27 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    // Finna delete a calendar entry
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        // Fix my calendar data once you delete them here
+        if editingStyle == UITableViewCellEditingStyle.delete {
+                do{
+                    try eventStore.removeCalendar((self.calendars?[(indexPath as NSIndexPath).row])!, commit: true)
+                    calendarDidAdd()
+                } catch {
+                    let alert = UIAlertController(title: "Calendar could not be deleted", message: (error as NSError).localizedDescription, preferredStyle: .alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(OKAction)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
@@ -111,24 +148,17 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
                 let destinationVC = segue.destination as! UINavigationController
                 let addCalendarVC = destinationVC.viewControllers[0] as! AddCalendarViewController
                 addCalendarVC.delegate = self
-          /*  case SegueIdentifiers.showEventsSegue:
-                //                let destinationVC = segue.destinationViewController as! UINavigationController
+            case "ShowEventsView":
+//                let destinationVC = segue.destinationViewController as! UINavigationController
                 let eventsVC = segue.destination as! EventsViewController
                 let selectedIndexPath = calendarsTableView.indexPathForSelectedRow!
                 
-                eventsVC.calendar = calendars?[(selectedIndexPath as NSIndexPath).row]*/
+                eventsVC.calendar = calendars?[(selectedIndexPath as NSIndexPath).row]
             default:
                 break
             }
         }
     }
-    
-    // MARK: Calendar Added Delegate
-    func calendarDidAdd() {
-        self.loadCalendars()
-        self.refreshTableView()
-    }
-    
 }
 
 
