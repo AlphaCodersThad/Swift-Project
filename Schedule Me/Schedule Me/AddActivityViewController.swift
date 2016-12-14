@@ -40,5 +40,11 @@ class AddActivityViewController: UIViewController, UITextFieldDelegate,UIPickerV
         return categoryType[row]
     }
     
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func submitActivity(_ sender: UIButton) {
+        
+    }
     
 }

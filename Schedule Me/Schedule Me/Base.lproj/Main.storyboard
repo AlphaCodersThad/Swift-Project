@@ -137,11 +137,20 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitActivity:" destination="vpM-70-Pos" eventType="touchUpInside" id="rKM-dS-ro8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TyL-PS-e6x"/>
+                    <navigationItem key="navigationItem" id="TyL-PS-e6x">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yIT-nv-Aa7">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="vpM-70-Pos" id="3YE-xW-uex"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="SubmitActivity" destination="vu0-7D-EKr" id="OH0-AJ-jNR"/>
                         <outlet property="activityNameTextField" destination="Pfl-hw-mw9" id="jTn-WZ-Iiy"/>
