@@ -1,0 +1,21 @@
+PODS:
+  - CVCalendar (1.4.1)
+  - DateTimePicker (1.0.3)
+  - DropDown (2)
+  - SwiftMoment (0.7)
+
+DEPENDENCIES:
+  - CVCalendar (~> 1.4.1)
+  - DateTimePicker
+  - DropDown
+  - SwiftMoment
+
+SPEC CHECKSUMS:
+  CVCalendar: 61912eb5dc39c3bcfe22a731147a559a696fbc15
+  DateTimePicker: 23ca73cee22ff485e9e2fbfa4e4082845ce65e95
+  DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
+  SwiftMoment: dc6dd27012e267819104cbb03f74ff9192dd0b42
+
+PODFILE CHECKSUM: 945537c8f5a46166b58ef8a53cbf5a6e071ea862
+
+COCOAPODS: 1.1.1
