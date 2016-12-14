@@ -1,0 +1,3 @@
+protocol ActivityAdded {
+    func activityDidAdd()
+}

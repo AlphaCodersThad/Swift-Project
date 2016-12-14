@@ -7,33 +7,38 @@
 //
 
 import Foundation
+import EventKit
+import SwiftMoment
 
 let recommendedSleepTime: Int = 8
 struct Activity{
     var name: String              // Activity name
-    var category: [categoryType]  // type of activity (may fall into more than one category)
+    var category: String          // type of activity (may fall into more than one category)
     
     // Is it better to have this under activity, or under activity model...
     // If I have it
     var isFixed: Bool             // is it time-specific
     var isConsistent: Bool        // do you want going to be reoccuring?
-    var isAcademic: Bool          // is this class/academic related (This is iffy, may not be needed)
+    var isAdded: Bool          // is this class/academic related (This is iffy, may not be needed)
+    
     
     var activityValue: Int        // How important is this?
     
-    enum categoryType: String{
-        // May need to enum into a school type
-        case Class = "Class"
-        case Academic = "Academic"
-        case Job = "Job"
-        case ExtraCurricular = "Extra-Curricular"
-        
-        case Sleep = "Sleep"
-        case Health = "Health"
-        
-        case Recreational = "Recreational"
-        case Social = "Social"
-        case PersonalInterest = "Personal Interest"
+    init(){
+        self.name = "Some Activity"
+        self.category = "Some Category"
+        self.isFixed = false
+        self.isConsistent = false
+        self.isAdded = false
+        self.activityValue = 0
+    }
+    init(name: String, category: String, isFixed: Bool, isConsistent: Bool, isAdded: Bool, activityValue: Int){
+        self.name = name
+        self.category = category
+        self.isFixed = isFixed
+        self.isConsistent = isConsistent
+        self.isAdded = isAdded
+        self.activityValue = activityValue
     }
 }
 
@@ -43,21 +48,49 @@ class ActivityModel{
     
     //I need to create a plist to read from, to initialize the activity, and change var to let..
     fileprivate var activityData: [Activity]?
-    
     fileprivate var freeTime: Float
     fileprivate var sleepTime: Float
     // private let activityDictionary: [String: [Activity]]
     // private var lengthOfActivity: Float
     
     fileprivate init(){
-        self.activityData = nil
+        activityData = fillWithExamples()
         freeTime = 16.0
         sleepTime = 8.0
+    }
+
+    fileprivate init(activities: [Activity]){
+        self.activityData = activities
+        self.freeTime = 16.0
+        self.sleepTime = 8.0
     }
     
     func getListOfActivities() -> [Activity] {
         return activityData!
     }
+    
+    func getActivitiesByCategory(category: String) -> [Activity]?{
+        var activitiesByCategory: [Activity]?
+        for someActivity in activityData!{
+            var indexPath = 0
+            if category == someActivity.category{
+                activitiesByCategory?.insert(someActivity, at: indexPath)
+                indexPath = indexPath + 1
+                print(indexPath)
+            }
+        }
+        
+        return activitiesByCategory
+    }
+    
+    func numOfActivitiesByCategory(category: String) -> Int {
+        if let testActivity = getActivitiesByCategory(category: category){
+            return testActivity.count
+        } else {
+            return 0
+        }
+    }
+    
     func getFreeTime() -> Float {
         return freeTime
     }
@@ -67,3 +100,5 @@ class ActivityModel{
     }
     
 }
+
+let categoryType: [String] = ["Academic", "Health", "Extra-Curricular", "Recreational", "Chores"]

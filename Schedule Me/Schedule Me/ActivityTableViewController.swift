@@ -15,6 +15,13 @@ import SwiftMoment
 
 class ActivityTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CalendarAddedDelegate {
     
+    
+    // MARK: Calendar Added Delegate
+    func calendarDidAdd() {
+        self.loadCalendars()
+        self.refreshTableView()
+    }
+    
     @IBOutlet weak var permissionView: UIView!
     @IBOutlet weak var calendarsTableView: UITableView!
     
@@ -31,16 +38,16 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
     override func viewWillAppear(_ animated: Bool) {
         //super.viewWillAppear(animated)
         checkCalendarAuthorization()
-        // did can also be called as calendarDidAdd()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    
+
     func loadCalendars() {
-        self.calendars = eventStore.calendars(for: EKEntityType.event).sorted() { (cal1, cal2) -> Bool in
+        // This will load all the calendars.. I can also do calendars.(withIdentifier: String)
+        self.calendars = EKEventStore().calendars(for: EKEntityType.event).sorted() { (cal1, cal2) -> Bool in
             return cal1.title < cal2.title
         }
 
@@ -50,13 +57,6 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
         calendarsTableView.isHidden = false
         calendarsTableView.reloadData()
     }
-    
-    // MARK: Calendar Added Delegate
-    func calendarDidAdd() {
-        self.loadCalendars()
-        self.refreshTableView()
-    }
-    
     
     // This should be done in viewWillAppear() because user can grant access at first,
     //   but later deny them from settings
@@ -91,12 +91,13 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
     }
     
 
-    
+    // Go to settings to change permission when needed
     @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
         let openSettingsUrl = URL(string: UIApplicationOpenSettingsURLString)
         UIApplication.shared.openURL(openSettingsUrl!)
     }
-    
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Tableview Protocols
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let calendars = self.calendars {
@@ -140,7 +141,7 @@ class ActivityTableViewController: UIViewController, UITableViewDataSource, UITa
                 }
         }
     }
-    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {

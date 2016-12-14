@@ -24,8 +24,13 @@ class initialSetupViewController: UIViewController, UIPickerViewDelegate, UIPick
     let months:[String] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     var years = [String]()
     var pickerData: [[String]] = [[String]]()
-    var selectedMonth = String()
-    var selectedYear = String()
+    var selectedMonth = "01"
+    var selectedYear = String(moment().year)
+    var dateMonthYear = Date()
+    var current = Date()
+    
+    //var maxDateMonthYear = Date()
+    //var minDateMonthYear = Date()
     //var selectedDate = moment()
     
     override func viewDidLoad() {
@@ -34,6 +39,7 @@ class initialSetupViewController: UIViewController, UIPickerViewDelegate, UIPick
         self.monthYearPickerView.dataSource = self
         years = initializeYearSelections()
         pickerData = [months, years]
+        multipleUseButton.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,24 +64,54 @@ class initialSetupViewController: UIViewController, UIPickerViewDelegate, UIPick
         return pickerData[component][row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // This method is triggered whenever the user makes a change to the picker selection.
         // The parameter named row and component represents what was selected.
         switch component {
+        case 0:
+            selectedMonth = String(row.advanced(by: 1))
         case 1:
-            selectedMonth = months[row]
-        case 2:
             selectedYear = years[row]
         default:
             break
         }
-        
-        selectedDate =
+        //let string = selectedMonth + selectedYear + "01"
+        let string2 = selectedYear + "-" + selectedMonth + "-02"
+        dateMonthYear = getDate(dateInString: string2)
+        multipleUseButton.isHidden = false
+        //minDateMonthYear = getDate(dateInString: string)
+        //maxDateMonthYear = Calendar.current.date(byAdding: .day, value: 28, to: dateMonthYear)!
     }
-    @IBAction func displayDateTimePicker(_ sender: UIButton) {
-        let picker = DateTimePicker.show(selected: )
+    @IBAction func displayDateTimePicker(_ sender: AnyObject) {
+        let min = dateMonthYear.addingTimeInterval(-60 * 60 * 24 * 4)
+        let max = dateMonthYear.addingTimeInterval(60 * 60 * 24 * 4)
+        let picker = DateTimePicker.show(selected: dateMonthYear, minimumDate: min, maximumDate: max)
+        //let margins = view.layoutMarginsGuide
+        // margins.bottomAnchor.constraint(equalTo: monthYearPickerView.bottomAnchor).isActive = true
+        picker.topAnchor.constraint(equalTo: monthYearPickerView.bottomAnchor).isActive = true
+        // picker.addConstraint(monthYearPickerView.bottomAnchor)
+        picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
+        picker.doneButtonTitle = "!! DONE DONE !!"
+        picker.todayButtonTitle = "Today"
+        picker.completionHandler = { date in
+            self.current = date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm dd/MM/YYYY"
+            //self.item.title = formatter.string(from: date)
+        }
     }
     
+    // // // // // // // Function Helper // // // // // // //
+    //I'll probably create an extension of the moment framework to ease this..
+    func getDate(dateInString: String) -> Date {
+        let formatToDateObject = DateFormatter()
+            formatToDateObject.dateFormat = "yyyy-MM-dd"
+        
+        let string = dateInString
+        let date = formatToDateObject.date(from: string)
+        
+        return date!
+    }
     // Determine the years available to pick in our drop down selection
     func initializeYearSelections() -> [String] {
         var array = [String]()

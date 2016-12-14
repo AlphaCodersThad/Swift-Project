@@ -14,6 +14,12 @@ import EventKit
 
 class EventsViewController: UIViewController, UITableViewDataSource, EventAddedDelegate {
     
+    // MARK: Event Added Delegate
+    func eventDidAdd() {
+        self.loadEvents()
+        self.eventsTableView.reloadData()
+    }
+    
     @IBOutlet weak var eventsTableView: UITableView!
     
     var calendar: EKCalendar!
@@ -27,9 +33,11 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
     
     // I probably want to load events by weekly.. then use SwiftMoments create time intervals object (associated with activities)
     func loadEvents(){
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
+        // Get all events within an interval
         let startDate = dateFormatter.date(from: "2016-01-01")
         let endDate = dateFormatter.date(from: "2016-12-31")
         
@@ -39,7 +47,8 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
             
             self.events = eventStore.events(matching: eventsPredicate).sorted {
                 (e1: EKEvent, e2: EKEvent) in
-                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+                return e1.startDate.compare(e2.startDate)
+                    == ComparisonResult.orderedAscending
             }
         }
     }
@@ -59,10 +68,11 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
         return cell
     }
     
+    // We're gonna assume EST
     func formatDate(_ date: Date?) -> String {
         if let date = date {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM/dd/yyyy"
+            dateFormatter.dateFormat = "EEEE MMM,dd yyyy 'Start:' HH:mm:ss"
             return dateFormatter.string(from: date)
         }
         
@@ -77,11 +87,4 @@ class EventsViewController: UIViewController, UITableViewDataSource, EventAddedD
         addEventVC.calendar = calendar
         addEventVC.delegate = self
     }
-    
-    // MARK: Event Added Delegate
-    func eventDidAdd() {
-        self.loadEvents()
-        self.eventsTableView.reloadData()
-    }
-    
 }
