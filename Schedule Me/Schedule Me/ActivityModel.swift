@@ -11,36 +11,7 @@ import EventKit
 import SwiftMoment
 
 let recommendedSleepTime: Int = 8
-struct Activity{
-    var name: String              // Activity name
-    var category: String          // type of activity (may fall into more than one category)
-    
-    // Is it better to have this under activity, or under activity model...
-    // If I have it
-    var isFixed: Bool             // is it time-specific
-    var isConsistent: Bool        // do you want going to be reoccuring?
-    var isAdded: Bool              // is this class/academic related (This is iffy, may not be needed)
-    
-    
-    var activityValue: Int        // How important is this?
-    
-    init(){
-        self.name = "Some Activity"
-        self.category = "Some Category"
-        self.isFixed = false
-        self.isConsistent = false
-        self.isAdded = false
-        self.activityValue = 0
-    }
-    init(name: String, category: String, isFixed: Bool, isConsistent: Bool, isAdded: Bool, activityValue: Int){
-        self.name = name
-        self.category = category
-        self.isFixed = isFixed
-        self.isConsistent = isConsistent
-        self.isAdded = isAdded
-        self.activityValue = activityValue
-    }
-}
+
 
 class ActivityModel{
     
@@ -54,7 +25,7 @@ class ActivityModel{
     // private var lengthOfActivity: Float
     
     fileprivate init(){
-        activityData = fillWithExamples()
+        //activityData = fillWithExamples()
         freeTime = 16.0
         sleepTime = 8.0
     }

@@ -31,3 +31,7 @@ let initialSquareCenter = square.center
 square.center = Point(x: 15.0, y: 15.0)
 print("square.origin is now at (\(square.origin.x), \(square.origin.y))")
 // Prints "square.origin is now at (10.0, 10.0)"
+
+
+
+var xcDataModelName: String = "Schedule Me"

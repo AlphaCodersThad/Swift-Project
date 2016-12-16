@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="15G1004" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Activity" representedClassName="Activity" syncable="YES" codeGenerationType="class">
+    <entity name="Activity" representedClassName=".ActivityMO" syncable="YES">
+        <attribute name="activityValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="added" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consistent" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="fixed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="scheduled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="choiceSlot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" syncable="YES"/>
+        <relationship name="choiceSlotDay" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" syncable="YES"/>
     </entity>
-    <entity name="Day" representedClassName="Day" syncable="YES" codeGenerationType="class">
-        <attribute name="dayOfWeek" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Day" representedClassName=".DayMO" syncable="YES">
+        <attribute name="activityOnQueue" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="numOfInterval" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="whichActivity" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="possibleActivitySlot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FreeTime" inverseName="bestPotentialFor" inverseEntity="FreeTime" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="freeSlot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FreeTime" inverseName="bestPotentialFor" inverseEntity="FreeTime" syncable="YES"/>
         <relationship name="takenSlot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TakenTime" inverseName="currentActivity" inverseEntity="TakenTime" syncable="YES"/>
     </entity>
-    <entity name="FreeTime" representedClassName="FreeTime" parentEntity="Day" syncable="YES" codeGenerationType="class">
-        <attribute name="groupFromAfter" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="groupFromBefore" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startEndLocation" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="strengthForActivity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="bestPotentialFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="possibleActivitySlot" inverseEntity="Day" syncable="YES"/>
+    <entity name="FreeTime" representedClassName=".FreeTime" parentEntity="Day" syncable="YES">
+        <attribute name="intervalSlot" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="nextEvent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priorEvent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="strengthForActivity" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="bestPotentialFor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="freeSlot" inverseEntity="Day" syncable="YES"/>
     </entity>
-    <entity name="TakenTime" representedClassName="TakenTime" parentEntity="Day" syncable="YES" codeGenerationType="class">
-        <attribute name="activityInPlace" optional="YES" attributeType="Binary" syncable="YES"/>
+    <entity name="TakenTime" representedClassName=".TakenTime" parentEntity="Day" syncable="YES">
         <attribute name="startEndTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="valueForAround" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="valueForAround" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="currentActivity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="takenSlot" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Activity" positionX="-470" positionY="371" width="128" height="133"/>
+        <element name="Activity" positionX="-513" positionY="326" width="128" height="148"/>
         <element name="Day" positionX="-225" positionY="387" width="128" height="118"/>
-        <element name="TakenTime" positionX="-234" positionY="212" width="128" height="103"/>
+        <element name="TakenTime" positionX="-234" positionY="212" width="128" height="88"/>
         <element name="FreeTime" positionX="-2" positionY="341" width="128" height="118"/>
     </elements>
 </model>

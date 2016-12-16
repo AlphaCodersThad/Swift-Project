@@ -1,5 +1,5 @@
 //
-//  FreeTime+CoreDataClass.swift
+//  DayMO+CoreDataClass.swift
 //  Schedule Me
 //
 //  Created by Thadea Achmad on 12/16/16.
@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 
-public class FreeTime: DayMO {
+public class DayMO: NSManagedObject {
 
 }

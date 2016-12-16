@@ -2,9 +2,8 @@
 //  TakenTime+CoreDataProperties.swift
 //  Schedule Me
 //
-//  Created by Thadea Achmad on 12/15/16.
+//  Created by Thadea Achmad on 12/16/16.
 //  Copyright © 2016 Thadea Achmad. All rights reserved.
-//  This file was automatically generated and should not be edited.
 //
 
 import Foundation
@@ -17,8 +16,7 @@ extension TakenTime {
         return NSFetchRequest<TakenTime>(entityName: "TakenTime");
     }
 
-    @NSManaged public var activityInPlace: NSData?
-    @NSManaged public var valueForAround: NSData?
+    @NSManaged public var valueForAround: Int16
     @NSManaged public var startEndTime: NSDate?
     @NSManaged public var currentActivity: NSSet?
 
@@ -28,10 +26,10 @@ extension TakenTime {
 extension TakenTime {
 
     @objc(addCurrentActivityObject:)
-    @NSManaged public func addToCurrentActivity(_ value: Day)
+    @NSManaged public func addToCurrentActivity(_ value: DayMO)
 
     @objc(removeCurrentActivityObject:)
-    @NSManaged public func removeFromCurrentActivity(_ value: Day)
+    @NSManaged public func removeFromCurrentActivity(_ value: DayMO)
 
     @objc(addCurrentActivity:)
     @NSManaged public func addToCurrentActivity(_ values: NSSet)
