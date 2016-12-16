@@ -19,7 +19,7 @@ struct Activity{
     // If I have it
     var isFixed: Bool             // is it time-specific
     var isConsistent: Bool        // do you want going to be reoccuring?
-    var isAdded: Bool             // is this class/academic related (This is iffy, may not be needed)
+    var isAdded: Bool              // is this class/academic related (This is iffy, may not be needed)
     
     
     var activityValue: Int        // How important is this?

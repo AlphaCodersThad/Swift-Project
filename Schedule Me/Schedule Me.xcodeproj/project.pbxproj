@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25173C9B1E0386FC00B2E5DC /* Activity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C931E0386FC00B2E5DC /* Activity+CoreDataClass.swift */; };
+		25173C9C1E0386FC00B2E5DC /* Activity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C941E0386FC00B2E5DC /* Activity+CoreDataProperties.swift */; };
+		25173C9D1E0386FC00B2E5DC /* Day+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C951E0386FC00B2E5DC /* Day+CoreDataClass.swift */; };
+		25173C9E1E0386FC00B2E5DC /* Day+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C961E0386FC00B2E5DC /* Day+CoreDataProperties.swift */; };
+		25173C9F1E0386FC00B2E5DC /* TakenTime+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C971E0386FC00B2E5DC /* TakenTime+CoreDataClass.swift */; };
+		25173CA01E0386FC00B2E5DC /* TakenTime+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C981E0386FC00B2E5DC /* TakenTime+CoreDataProperties.swift */; };
+		25173CA11E0386FC00B2E5DC /* FreeTime+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C991E0386FC00B2E5DC /* FreeTime+CoreDataClass.swift */; };
+		25173CA21E0386FC00B2E5DC /* FreeTime+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173C9A1E0386FC00B2E5DC /* FreeTime+CoreDataProperties.swift */; };
+		25173CA41E038F8900B2E5DC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25173CA31E038F8900B2E5DC /* DataManager.swift */; };
 		2523193A1DEDBA4C0036A2C5 /* AddCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252319391DEDBA4C0036A2C5 /* AddCalendarViewController.swift */; };
 		253953901DEE05DE0018ADE8 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539538F1DEE05DE0018ADE8 /* AddEventViewController.swift */; };
 		254CC82F1DDC1D6200444B6F /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254CC82E1DDC1D6200444B6F /* ActivityTableViewController.swift */; };
@@ -72,6 +81,15 @@
 
 /* Begin PBXFileReference section */
 		009AB8DE26F6965A21CB17CD /* Pods-Schedule Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule Me.release.xcconfig"; path = "Pods/Target Support Files/Pods-Schedule Me/Pods-Schedule Me.release.xcconfig"; sourceTree = "<group>"; };
+		25173C931E0386FC00B2E5DC /* Activity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25173C941E0386FC00B2E5DC /* Activity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Activity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25173C951E0386FC00B2E5DC /* Day+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25173C961E0386FC00B2E5DC /* Day+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Day+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25173C971E0386FC00B2E5DC /* TakenTime+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TakenTime+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25173C981E0386FC00B2E5DC /* TakenTime+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TakenTime+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25173C991E0386FC00B2E5DC /* FreeTime+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FreeTime+CoreDataClass.swift"; sourceTree = "<group>"; };
+		25173C9A1E0386FC00B2E5DC /* FreeTime+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FreeTime+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		25173CA31E038F8900B2E5DC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		252319391DEDBA4C0036A2C5 /* AddCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCalendarViewController.swift; sourceTree = "<group>"; };
 		2539538F1DEE05DE0018ADE8 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		254CC82E1DDC1D6200444B6F /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +276,14 @@
 		25BD0FA51DC64242009CEF41 /* Schedule Me */ = {
 			isa = PBXGroup;
 			children = (
+				25173C931E0386FC00B2E5DC /* Activity+CoreDataClass.swift */,
+				25173C941E0386FC00B2E5DC /* Activity+CoreDataProperties.swift */,
+				25173C951E0386FC00B2E5DC /* Day+CoreDataClass.swift */,
+				25173C961E0386FC00B2E5DC /* Day+CoreDataProperties.swift */,
+				25173C971E0386FC00B2E5DC /* TakenTime+CoreDataClass.swift */,
+				25173C981E0386FC00B2E5DC /* TakenTime+CoreDataProperties.swift */,
+				25173C991E0386FC00B2E5DC /* FreeTime+CoreDataClass.swift */,
+				25173C9A1E0386FC00B2E5DC /* FreeTime+CoreDataProperties.swift */,
 				25BD0FC61DC64270009CEF41 /* Model */,
 				25AA31ED1DFEB81800B05D8E /* Set Up */,
 				25A018061E01597100A8596B /* Protocols */,
@@ -268,6 +294,7 @@
 				25BD0FAD1DC64242009CEF41 /* Assets.xcassets */,
 				25BD0FAF1DC64242009CEF41 /* LaunchScreen.storyboard */,
 				25BD0FA61DC64242009CEF41 /* AppDelegate.swift */,
+				25173CA31E038F8900B2E5DC /* DataManager.swift */,
 				25AA32371DFF82B800B05D8E /* Schedule Me.xcdatamodeld */,
 				25A0180B1E01997C00A8596B /* EventKit Followthrough */,
 				25BD0FB21DC64242009CEF41 /* Info.plist */,
@@ -522,6 +549,7 @@
 				25AA31EF1DFEB84B00B05D8E /* MainViewController.swift in Sources */,
 				25AA32181DFF232400B05D8E /* CVCalendarContentViewController.swift in Sources */,
 				2523193A1DEDBA4C0036A2C5 /* AddCalendarViewController.swift in Sources */,
+				25173C9E1E0386FC00B2E5DC /* Day+CoreDataProperties.swift in Sources */,
 				25AA32241DFF232400B05D8E /* CVCalendarViewAppearance.swift in Sources */,
 				25AA32391DFF82B800B05D8E /* Schedule Me.xcdatamodeld in Sources */,
 				25AA322D1DFF232400B05D8E /* CVRange.swift in Sources */,
@@ -530,10 +558,13 @@
 				25AA32221DFF232400B05D8E /* CVCalendarViewAnimator.swift in Sources */,
 				254CC82F1DDC1D6200444B6F /* ActivityTableViewController.swift in Sources */,
 				25A0180A1E01996D00A8596B /* ActivityTableController.swift in Sources */,
+				25173C9F1E0386FC00B2E5DC /* TakenTime+CoreDataClass.swift in Sources */,
 				25AA32331DFF232400B05D8E /* CVWeekdaySymbolType.swift in Sources */,
 				25AA32321DFF232400B05D8E /* CVStatus.swift in Sources */,
 				25AA322B1DFF232400B05D8E /* CVDate.swift in Sources */,
+				25173C9D1E0386FC00B2E5DC /* Day+CoreDataClass.swift in Sources */,
 				25AA321B1DFF232400B05D8E /* CVCalendarManager.swift in Sources */,
+				25173C9C1E0386FC00B2E5DC /* Activity+CoreDataProperties.swift in Sources */,
 				25AA321C1DFF232400B05D8E /* CVCalendarMenuView.swift in Sources */,
 				25AA321D1DFF232400B05D8E /* CVCalendarMenuViewDelegate.swift in Sources */,
 				25AA322C1DFF232400B05D8E /* CVPresent.swift in Sources */,
@@ -541,24 +572,29 @@
 				25AA321E1DFF232400B05D8E /* CVCalendarMonthContentViewController.swift in Sources */,
 				25AA321A1DFF232400B05D8E /* CVCalendarDayViewControlCoordinator.swift in Sources */,
 				25A018081E015A4D00A8596B /* AddActivityViewController.swift in Sources */,
+				25173CA01E0386FC00B2E5DC /* TakenTime+CoreDataProperties.swift in Sources */,
 				25F034161DF6DC8900BE0A5B /* initialSetupViewController.swift in Sources */,
 				25AA32231DFF232400B05D8E /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				25AA32191DFF232400B05D8E /* CVCalendarDayView.swift in Sources */,
 				25BD0FA71DC64242009CEF41 /* AppDelegate.swift in Sources */,
 				25AA32261DFF232400B05D8E /* CVCalendarViewDelegate.swift in Sources */,
 				25A018051E01595F00A8596B /* AddActivityProtocol.swift in Sources */,
+				25173CA21E0386FC00B2E5DC /* FreeTime+CoreDataProperties.swift in Sources */,
 				25AA321F1DFF232400B05D8E /* CVCalendarMonthView.swift in Sources */,
+				25173CA41E038F8900B2E5DC /* DataManager.swift in Sources */,
 				25AA32271DFF232400B05D8E /* CVCalendarViewPresentationMode.swift in Sources */,
 				25F173691DD56EF6008257C1 /* ActivityModel.swift in Sources */,
 				25AA32171DFF232400B05D8E /* CVAuxiliaryView.swift in Sources */,
 				25AA32281DFF232400B05D8E /* CVCalendarWeekContentViewController.swift in Sources */,
 				25AA32291DFF232400B05D8E /* CVCalendarWeekday.swift in Sources */,
+				25173C9B1E0386FC00B2E5DC /* Activity+CoreDataClass.swift in Sources */,
 				25AA322E1DFF232400B05D8E /* CVScrollDirection.swift in Sources */,
 				25AA32311DFF232400B05D8E /* CVShape.swift in Sources */,
 				25AA32201DFF232400B05D8E /* CVCalendarTouchController.swift in Sources */,
 				25AA32211DFF232400B05D8E /* CVCalendarView.swift in Sources */,
 				259E625A1DEDF2FA000E401C /* EventsViewController.swift in Sources */,
 				25AA32251DFF232400B05D8E /* CVCalendarViewAppearanceDelegate.swift in Sources */,
+				25173CA11E0386FC00B2E5DC /* FreeTime+CoreDataClass.swift in Sources */,
 				25AA32351DFF232400B05D8E /* CVCalendar-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
